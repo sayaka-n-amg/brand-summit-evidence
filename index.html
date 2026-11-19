@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IKIGAI Brand Strategy</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Space+Grotesk:wght@600;700&display=swap">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -16,13 +14,13 @@
   --blue: #2563eb; --blue-light: #eff6ff; --green: #059669; --amber: #d97706;
   --shadow-sm: 0 1px 3px rgba(0,0,0,.07);
 }
-body { font-family: 'Inter','Noto Sans JP',-apple-system,sans-serif; background: var(--bg); color: var(--fg); font-size: 14px; line-height: 1.6; }
+body { font-family: Arial, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--fg); font-size: 14px; line-height: 1.6; }
 
 /* Header */
 .brand-header { background: var(--fg); color: #fff; padding: 28px 24px; }
 .brand-header-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 .brand-pill { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 3px 10px; border: 1px solid rgba(255,255,255,.2); border-radius: 100px; color: rgba(255,255,255,.5); margin-bottom: 10px; }
-.brand-name { font-family: 'Space Grotesk',sans-serif; font-size: clamp(32px,5vw,50px); font-weight: 700; letter-spacing: -.04em; color: #fff; line-height: 1; margin-bottom: 5px; }
+.brand-name { font-family: Arial, 'Helvetica Neue', sans-serif; font-size: clamp(32px,5vw,50px); font-weight: 700; letter-spacing: -.04em; color: #fff; line-height: 1; margin-bottom: 5px; }
 .brand-tagline { font-size: 13px; color: rgba(255,255,255,.5); }
 .brand-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding-bottom: 3px; }
 .brand-status { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 100px; background: rgba(15,118,110,.4); color: #5eead4; }
@@ -217,6 +215,7 @@ small.muted { color: var(--fg-muted); font-size: 11px; }
     <button class="tab-btn" data-page="pos-brand">ブランドシェア</button>
     <button class="tab-btn" data-page="category">カテゴリ市場</button>
     <button class="tab-btn" data-page="trend">トレンド</button>
+    <button class="tab-btn" data-page="sns">TikTok分析</button>
     <button class="tab-btn" data-page="ingredient">成分戦略</button>
     <button class="tab-btn" data-page="competitor">競合空白</button>
     <button class="tab-btn" data-page="roadmap">ロードマップ</button>
@@ -688,7 +687,137 @@ small.muted { color: var(--fg-muted); font-size: 11px; }
   </div>
 </div>
 
-<!-- ── 08 Ingredient ── -->
+<!-- ── 08 TikTok/SNS分析 ── -->
+<div id="sns" class="page">
+  <div class="eyebrow">08 TikTok / SNS分析</div>
+  <h1 class="page-title">Medicubeが独占——K-beautyがUS TTSを制圧している<span class="page-updated">Fastmoss / Kalodata 2026-11-19</span></h1>
+  <p class="page-lead">FastmossとKalodataを分析した結果、US TikTok Shopのスキンケア上位はMedicube（韓国ブランド）が席巻。IKIGAI参入に向け競合実態とカテゴリ成長を整理する。</p>
+
+  <div class="insight-box">
+    <div class="insight-label">KEY INSIGHT — Fastmoss US TTS Daily 2026-11-18</div>
+    <div class="insight-text">Top 10のうち<em>5枠をMedicube一社が独占</em>。Shop日次GMV <em>$1.8M（medicube US Store）</em>。K-beauty成分（PDRN / NAD+ / EGF）がUS消費者に刺さっている。IKIGAIは「日本版Premium K-beauty」としてこの波を受け取れる。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">US TikTok Shop — Best Sellers TOP10（日次 2026-11-18 / Fastmoss）</div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>商品名</th>
+              <th>価格</th>
+              <th>カテゴリ</th>
+              <th>ショップ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="hl"><td class="bold">1</td><td class="bold">[medicube] Zero Pore Pads (AHA+BHA)</td><td>$15–40</td><td><span class="label decided">Face Scrubs &amp; Peels</span></td><td>medicube US Store</td></tr>
+            <tr class="hl"><td class="bold">2</td><td class="bold">[medicube] NAD+ EGF Firming Serum</td><td>$15</td><td><span class="label decided">Serums &amp; Essences</span></td><td>medicube US Store</td></tr>
+            <tr><td class="bold">3</td><td>Nature x Science Rosemary Spray</td><td>$10.50</td><td><span class="label tbd">Hair Loss Products</span></td><td>Bare Anatomy Haircare</td></tr>
+            <tr class="hl"><td class="bold">4</td><td class="bold">[medicube] NAD+ Peptide Mask</td><td>$4.90–9.80</td><td><span class="label decided">Face Masks</span></td><td>medicube US Store</td></tr>
+            <tr class="hl"><td class="bold">5</td><td class="bold">[medicube] Collagen Night Cream</td><td>$10–15</td><td><span class="label decided">Moisturizers &amp; Mists</span></td><td>medicube US Store</td></tr>
+            <tr class="hl"><td class="bold">6</td><td class="bold">[medicube] PDRN Pink Peptide Toner</td><td>$10</td><td><span class="label decided">Toners</span></td><td>medicube US Store</td></tr>
+            <tr><td class="bold">7</td><td>Hismile iD Stain Whitening</td><td>$10.30</td><td><span class="label tbd">Mouthwash</span></td><td>Hismile US</td></tr>
+            <tr><td class="bold">8</td><td>Cerasee, Asosi (Haitian herb)</td><td>$15.66</td><td><span class="label tbd">Breast Care</span></td><td>Byenblan</td></tr>
+            <tr><td class="bold">9</td><td>KKPeople Easy-Off Bodysuit</td><td>$25–38</td><td><span class="label tbd">Shapewear</span></td><td>KKpeople</td></tr>
+            <tr><td class="bold">10</td><td>[EPAIS] Eye Treatment</td><td>$16–29</td><td><span class="label candidate">Eye Treatments</span></td><td>epais</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-note">※ ハイライト（緑）= Medicube商品（全6/10中5枠が美容品、そのうち5がMedicube）。<br>出典: Fastmoss US Daily Top Selling Products 2026-11-18。</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-header">US TTS 売上Top3商品（Kalodata 過去30日間）</div>
+      <div class="card-body">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>#</th><th>商品</th><th>売上</th><th>成長率</th><th>販売件数</th></tr></thead>
+            <tbody>
+              <tr class="hl"><td class="bold">1</td><td class="bold">Medicube Smooth &amp; Clear Body Care Set</td><td class="bold">12億円</td><td>+63%</td><td>23.7万</td></tr>
+              <tr><td class="bold">2</td><td>Comfrt Dreamer Blanket</td><td>5億円</td><td>+96%</td><td>3.97万</td></tr>
+              <tr class="hl"><td class="bold">3</td><td class="bold">Medicube Zero Pore Pads</td><td>5億円</td><td>+228%</td><td>14.8万</td></tr>
+              <tr class="hl"><td class="bold">4</td><td class="bold">Medicube PDRN Pink Peptide Mask</td><td>5億円</td><td>&gt;999%</td><td>13.9万</td></tr>
+              <tr class="hl"><td class="bold">7</td><td class="bold">Medicube NAD+ EGF Serum</td><td>4億円</td><td>+176%</td><td>14.7万</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-note">出典: Kalodata 過去30日間 (10/20–11/18)</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">スキンケア サブカテゴリ成長率（Kalodata 過去30日間）</div>
+      <div class="card-body">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>カテゴリ</th><th>売上</th><th>成長率</th></tr></thead>
+            <tbody>
+              <tr class="hl"><td class="bold">フェイススクラブ・ピーリング</td><td>8億円</td><td class="bold">+199%</td></tr>
+              <tr class="hl"><td class="bold">トナー</td><td>8億円</td><td class="bold">+100%</td></tr>
+              <tr><td>ニキビ治療</td><td>6億円</td><td>+59%</td></tr>
+              <tr><td>洗顔料</td><td>5億円</td><td>+68%</td></tr>
+              <tr><td>フェイシャルマッサージクリーム</td><td>4億円</td><td>+59%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-note">出典: Kalodata 過去30日間</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">US TikTok ハッシュタグ ビューティートレンド — 2026年</div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>ハッシュタグ</th><th>トレンド方向</th><th>IKIGAI接合点</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="bold">#glassskin</td><td><span class="label decided">持続上昇</span></td><td>ガラスのような透明感 → トナー・セラム訴求</td></tr>
+            <tr><td class="bold">#kbeauty</td><td><span class="label decided">持続上昇</span></td><td>K-beauty隣接、J-beautyポジションで差別化</td></tr>
+            <tr><td class="bold">#skincarecheck</td><td><span class="label decided">持続上昇</span></td><td>UGCルーティン動画 → Medicubeに並べてもらう</td></tr>
+            <tr><td class="bold">#antiaging</td><td><span class="label decided">持続上昇</span></td><td>Longevity訴求の入口、EGCGと連動</td></tr>
+            <tr><td class="bold">#longevity</td><td><span class="label candidate">台頭中</span></td><td>IKIGAI = 塗るLongevity、先行してカテゴリ定義</td></tr>
+            <tr><td class="bold">#matchaskincare</td><td><span class="label candidate">台頭中</span></td><td>IKIGAI抹茶EGCGセラムと直結</td></tr>
+            <tr><td class="bold">#mochiskin</td><td><span class="label candidate">台頭中</span></td><td>もちもち・ぷるぷる肌 → 日本発の質感として親和性大</td></tr>
+            <tr><td class="bold">#sunscreen</td><td><span class="label tbd">ピーク済</span></td><td>エントリー不要（過飽和）</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-note">※ トレンド判定：Kalodata 90日 vs 30日の成長率比較 + TikTok Creative Center参照。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">IKIGAI vs Medicube — ポジショニング整理</div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>比較軸</th><th>Medicube（韓国）</th><th>IKIGAI（日本）</th></tr></thead>
+          <tbody>
+            <tr><td class="bold">原産国イメージ</td><td>K-beautyエビデンス・臨床訴求</td><td class="bold">J-beauty 日本の知恵・自然成分</td></tr>
+            <tr><td class="bold">主力成分</td><td>PDRN / NAD+ / EGF（医療由来）</td><td class="bold">EGCG / テアニン / クロロフィル</td></tr>
+            <tr><td class="bold">価格帯</td><td>$5–40（マス価格）</td><td class="bold">$18–45（プレミアム）</td></tr>
+            <tr><td class="bold">コンセプト</td><td>即効・科学・ポア・クリア</td><td class="bold">長期・Longevity・健やかな肌地盤</td></tr>
+            <tr><td class="bold">TTS Shop GMV</td><td>$1.8M/日</td><td>→ <em>Medicubeの隣でプレミアムを取りにいく</em></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <strong>IKIGAI参入推奨タイミング：</strong> Medicubeが開拓したUS TTS美容客（#glassskin / #kbeauty）はすでにK-beauty成分に親しんでいる。IKIGAIは「次のステップ」として、即効ではなく長期的なLongevity Beautyを提案する。フェイスセラム（EGCG / テアニン）を入口とし、TikTok UGCルーティン動画 × クリエイターコラボで認知獲得する戦略が最適。
+  </div>
+</div>
+
+<!-- ── 09 Ingredient ── -->
 <div id="ingredient" class="page">
   <div class="eyebrow">08 成分戦略</div>
   <h1 class="page-title">抹茶EGCGはLongevity訴求ができる数少ない成分<span class="page-updated">更新 2026-11-19</span></h1>
@@ -825,7 +954,7 @@ small.muted { color: var(--fg-muted); font-size: 11px; }
 const T = '#0f766e', TM = '#14b8a6', TL = 'rgba(15,118,110,.12)';
 const BL = '#2563eb', AM = '#d97706', GR = '#9ca3af', GN = '#059669';
 const GRID = '#f0f0f0';
-Chart.defaults.font.family = "'Inter','Noto Sans JP',sans-serif";
+Chart.defaults.font.family = "Arial, 'Helvetica Neue', sans-serif";
 Chart.defaults.color = '#6b7280';
 
 // Tab switching
