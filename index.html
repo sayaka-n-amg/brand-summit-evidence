@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Longevity コンセプト選定 — BRAND SUMMIT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --fg: #111827;
+    --fg-muted: #6b7280;
+    --fg-subtle: #9ca3af;
+    --border: #e5e7eb;
+    --bg-surface: #f9fafb;
+    --bg-hover: #f3f4f6;
+    --accent: #0f766e;
+    --accent-bg: #f0fdfa;
+    --accent-text: #134e4a;
+    --blue: #2563eb;
+    --green: #059669;
+    --amber: #d97706;
+    --chip-bg: #ffffff;
+    --chip-border: #d1d5db;
+    --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+  }
+
+  body {
+    font-family: 'Inter', 'Noto Sans JP', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── Page header ── */
+  .page-header {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 20px;
+  }
+  .page-title {
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    color: var(--fg);
+    margin-bottom: 8px;
+  }
+  .page-meta {
+    font-size: 12px;
+    color: var(--fg-muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+  .page-meta .sep { color: var(--border); }
+
+  /* ── Sticky nav ── */
+  .nav-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 10px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .nav-label {
+    font-size: 11px;
+    color: var(--fg-subtle);
+    font-weight: 500;
+  }
+  .tab-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tab-btn {
+    padding: 5px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid var(--chip-border);
+    background: var(--chip-bg);
+    color: var(--fg-muted);
+    text-decoration: none;
+    transition: all .15s;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { background: var(--bg-hover); color: var(--fg); }
+  .tab-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  /* ── Main ── */
+  .main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+  }
+
+  /* ── Section ── */
+  .section {
+    margin-bottom: 48px;
+    scroll-margin-top: 100px;
+  }
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    color: var(--fg);
+    margin-bottom: 4px;
+  }
+  .section-sub {
+    font-size: 13px;
+    color: var(--fg-muted);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .section-updated {
+    font-size: 11px;
+    color: var(--fg-subtle);
+    margin-left: 8px;
+  }
+
+  /* ── Card ── */
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+  }
+  .card-header {
+    padding: 12px 20px;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--fg);
+  }
+  .card-body { padding: 20px; }
+  .card-desc {
+    font-size: 13px;
+    color: var(--fg-muted);
+    line-height: 1.65;
+  }
+
+  /* ── Stat grid ── */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .stat-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    background: var(--bg);
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--fg-subtle);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -.03em;
+    color: var(--fg);
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 4px;
+  }
+  .stat-note {
+    font-size: 11px;
+    color: var(--fg-muted);
+    line-height: 1.4;
+  }
+  .stat-source {
+    font-size: 10px;
+    color: var(--fg-subtle);
+    margin-top: 4px;
+  }
+
+  /* ── Table ── */
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 460px;
+  }
+  thead th {
+    text-align: left;
+    padding: 9px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--fg-muted);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+    background: var(--bg-surface);
+  }
+  tbody td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--fg);
+    vertical-align: middle;
+    line-height: 1.4;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: var(--bg-hover); }
+  td.bold { font-weight: 600; }
+
+  /* Score bar */
+  .score-bar { display: flex; align-items: center; gap: 8px; }
+  .score-track { flex: 1; height: 4px; background: var(--border); border-radius: 2px; min-width: 50px; }
+  .score-fill { height: 100%; border-radius: 2px; background: var(--blue); }
+  .score-fill.top { background: var(--green); }
+  .score-num { font-size: 12px; font-weight: 700; color: var(--fg-muted); min-width: 24px; text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* ── Evidence items ── */
+  .evidence-list { display: flex; flex-direction: column; gap: 10px; }
+  .ev {
+    display: flex;
+    gap: 14px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    align-items: flex-start;
+    background: var(--bg);
+  }
+  .ev-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+  }
+  .ev-title { font-size: 13px; font-weight: 600; color: var(--fg); margin-bottom: 3px; line-height: 1.4; }
+  .ev-desc { font-size: 12px; color: var(--fg-muted); line-height: 1.55; }
+  .ev-source { font-size: 10px; color: var(--fg-subtle); margin-top: 5px; }
+
+  /* ── Ingredient chips ── */
+  .ingredient-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  .ingr-chip {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    background: var(--bg);
+  }
+  .ingr-name { font-size: 13px; font-weight: 600; color: var(--fg); margin-bottom: 4px; }
+  .ingr-desc { font-size: 12px; color: var(--fg-muted); line-height: 1.5; }
+  .ingr-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-top: 6px;
+    background: var(--accent-bg);
+    color: var(--accent-text);
+  }
+
+  /* ── Callout ── */
+  .callout {
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.65;
+    margin-top: 14px;
+  }
+  .callout.info {
+    background: var(--accent-bg);
+    border: 1px solid #99f6e4;
+    color: var(--accent-text);
+  }
+  .callout.warning {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    color: #92400e;
+    border-left: 3px solid var(--amber);
+  }
+
+  /* ── Open items ── */
+  .open-list { display: flex; flex-direction: column; gap: 6px; }
+  .open-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 13px;
+    color: var(--fg-muted);
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+  }
+  .open-item::before {
+    content: '○';
+    flex-shrink: 0;
+    font-size: 11px;
+    color: var(--fg-subtle);
+    margin-top: 2px;
+  }
+
+  /* ── Conclusion ── */
+  .conclusion-box {
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .conclusion-head {
+    background: var(--accent);
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .conclusion-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .conclusion-body p { font-size: 14px; color: var(--fg-muted); line-height: 1.7; }
+  .conclusion-body strong { color: var(--fg); }
+
+  /* ── Footer ── */
+  footer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px 24px 40px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--fg-subtle);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .page-header { padding: 24px 16px 16px; }
+    .nav-inner { padding: 8px 16px; }
+    .main { padding: 24px 16px 60px; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1 class="page-title">なぜ「Longevity」をコンセプトに選ぶのか<br>— BRAND SUMMIT エビデンス集</h1>
+  <div class="page-meta">
+    <span>MOCHI MOCHI BEAUTY（仮）/ I-ne様向け</span>
+    <span class="sep">|</span>
+    <span>更新 2026-11-19</span>
+    <span class="sep">|</span>
+    <span>USインバウンド起点グローバルブランド構想</span>
+  </div>
+</div>
+
+<div class="nav-wrapper">
+  <div class="nav-inner">
+    <span class="nav-label">セクションで見る</span>
+    <div class="tab-row">
+      <a href="#market" class="tab-btn active">USマーケット</a>
+      <a href="#regional" class="tab-btn">地域データ</a>
+      <a href="#scorecard" class="tab-btn">コンセプト評価</a>
+      <a href="#ingredient" class="tab-btn">成分エビデンス</a>
+      <a href="#competitor" class="tab-btn">競合空白</a>
+      <a href="#conclusion" class="tab-btn">決定事項</a>
+      <a href="#open" class="tab-btn">未確認事項</a>
+    </div>
+  </div>
+</div>
+
+<main class="main">
+
+  <!-- ── 01 US Market ── -->
+  <section id="market" class="section">
+    <div class="section-eyebrow">01 USマーケットシグナル</div>
+    <h2 class="section-title">美容の価値観がウェルネスへ移行している<span class="section-updated">更新 2026-11-19</span></h2>
+    <p class="section-sub">「外見を整える美容」から「心身の健康を長期的に支えるウェルネス体験」へ。US市場でのパラダイムシフトが確認されている。</p>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">美容液 英語圏比率</div>
+        <div class="stat-value">40.9%</div>
+        <div class="stat-note">年間売上23.3億円・カテゴリ最高英語圏比率</div>
+        <div class="stat-source">出典: I-ne向けAnyMind提案 (2026.08)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">NMN系サプリ インバウンド売上</div>
+        <div class="stat-value">¥4.7億</div>
+        <div class="stat-note">英語圏比率25%。ヒロソフィー1社独占状態</div>
+        <div class="stat-source">出典: ドンキPOSデータ</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Eye Patchバズ再生数</div>
+        <div class="stat-value">680万回</div>
+        <div class="stat-note">BeautyofJoseon「Revive Eye Patch」TikTok再生数</div>
+        <div class="stat-source">出典: I-ne向けAnyMind提案</div>
+      </div>
+    </div>
+
+    <div class="evidence-list">
+      <div class="ev">
+        <div class="ev-icon">📈</div>
+        <div>
+          <div class="ev-title">Longevityトレンドを受け、目元ケアカテゴリが急拡大中</div>
+          <div class="ev-desc">BeautyofJoseon「Revive Eye Patch &amp; Eye Serum」がTikTokで680万回再生。Rhode（ヘイリービーバー）Eye PatchもバズりEye系が連鎖。LorealがLED目元パッチ型美顔器を開発。Google Trend「eye serum」「eye cream」が上昇中。</div>
+          <div class="ev-source">出典: I-ne向けAnyMind提案資料 (2026.08.03) · USのGoogle Trend</div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-icon">💊</div>
+        <div>
+          <div class="ev-title">NMNサプリは競合空白。「次のNMN」を先占できる</div>
+          <div class="ev-desc">ヒロソフィー以外の競合がおらず、ポテンシャルあり。NMNという米国トレンド成分をいち早く導入してドンキの棚を獲得したヒロソフィーの成功パターンを踏襲できる。</div>
+          <div class="ev-source">出典: I-ne向けAnyMind提案 · ドンキPOSデータ</div>
+        </div>
+      </div>
+      <div class="ev">
+        <div class="ev-icon">🔬</div>
+        <div>
+          <div class="ev-title">美容液×インバウンドは市場規模・英語圏比率ともに最高クラス</div>
+          <div class="ev-desc">美容液の英語圏比率40.9%・年間売上23.3億円はカテゴリ最高水準。大量B/Aコンテンツとの相性も良く、Longevityを訴求軸にしたセラムはUGC動画で拡散しやすい。</div>
+          <div class="ev-source">出典: I-ne向けAnyMind提案 · Salonia POS実績</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 02 Regional ── -->
+  <section id="regional" class="section">
+    <div class="section-eyebrow">02 地域別消費者データ</div>
+    <h2 class="section-title">各国でLongevity関心度は確認済み<span class="section-updated">更新 2026-11-18</span></h2>
+    <p class="section-sub">調査時点のシグナル。数値は一次情報確認前のため推定値として扱うこと（⚠️ 下記参照）。</p>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">🇰🇷 韓国（Mintel）</div>
+        <div class="stat-value">44%</div>
+        <div class="stat-note">「longevity＝コラーゲン再生・可視的エイジング逆転」と定義する韓国女性の割合</div>
+        <div class="stat-source">出典: Mintel調査</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">🇨🇳 中国（Mintel）</div>
+        <div class="stat-value">1/3+</div>
+        <div class="stat-note">ミトコンドリアレベルの成分デリバリーで効果があると回答した中国女性の割合</div>
+        <div class="stat-source">出典: Mintel調査</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">🇯🇵 日本（健康産業新聞）</div>
+        <div class="stat-value">¥250億+</div>
+        <div class="stat-note">NMNサプリ国内市場規模（2024年）</div>
+        <div class="stat-source">出典: 健康産業新聞 (2024.07)</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">韓国が最先行 — Amorepacific「Vital Beautie」</div>
+      <div class="card-body">
+        <p class="card-desc">PeakBridge VCレポートによると、AmorepacificはVital Beautieラインでbeauty×longevityを一商品ラインで展開済み。JapanブランドはKorean先行者の後ろをいくのではなく、「日本発のlongevity科学」という独自ポジションで差別化できる立場にある。日本はFOSHU規制があり、成分系サプリの土台（規制・消費者認知ともに）が整っている。</p>
+      </div>
+    </div>
+
+    <div class="callout warning">
+      ⚠️ <strong>要確認:</strong> 日本・台湾のlongevity消費者認知率調査（2024年）は未取得。MintelおよびEuromonitorの一次情報の確認が必要。NMN規制は国ごとに異なる（中国：化粧品成分OK・サプリNG）。
+    </div>
+  </section>
+
+  <!-- ── 03 Scorecard ── -->
+  <section id="scorecard" class="section">
+    <div class="section-eyebrow">03 コンセプト評価スコア</div>
+    <h2 class="section-title">発酵・抹茶が最上位。Longevityの器として機能する<span class="section-updated">更新 2026-11-19</span></h2>
+    <p class="section-sub">競合優位性・日本独自性・US親和性の3軸（5点満点）で総合評価。グローバル展開フェーズにおける主素材を選定。</p>
+
+    <div class="card">
+      <div class="card-header">日本素材テーマ × グローバルブランド適正（I-ne向けAnyMind提案 2026.08）</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>テーマ</th>
+              <th>競合優位性</th>
+              <th>日本独自性</th>
+              <th>US親和性</th>
+              <th>総合</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="bold">🧫 発酵・麹</td>
+              <td>3.5</td>
+              <td>4.5</td>
+              <td>5.0</td>
+              <td>
+                <div class="score-bar">
+                  <div class="score-track"><div class="score-fill top" style="width:86%"></div></div>
+                  <span class="score-num">4.3</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="bold">🍵 抹茶</td>
+              <td>3.0</td>
+              <td>4.5</td>
+              <td>5.0</td>
+              <td>
+                <div class="score-bar">
+                  <div class="score-track"><div class="score-fill top" style="width:84%"></div></div>
+                  <span class="score-num">4.2</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>🌾 米・米ぬか</td>
+              <td>3.5</td>
+              <td>4.0</td>
+              <td>4.5</td>
+              <td>
+                <div class="score-bar">
+                  <div class="score-track"><div class="score-fill" style="width:80%"></div></div>
+                  <span class="score-num">4.0</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>🌲 森林浴・ヒノキ</td>
+              <td>3.5</td>
+              <td>3.5</td>
+              <td>4.0</td>
+              <td>
+                <div class="score-bar">
+                  <div class="score-track"><div class="score-fill" style="width:74%"></div></div>
+                  <span class="score-num">3.7</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>⚫ 炭・竹炭</td>
+              <td>2.0</td>
+              <td>3.0</td>
+              <td>2.5</td>
+              <td>
+                <div class="score-bar">
+                  <div class="score-track"><div class="score-fill" style="width:50%"></div></div>
+                  <span class="score-num">2.5</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <strong>推奨:</strong> 発酵・麹（4.3）または抹茶（4.2）をLongevityコンセプトのコア素材として選定。どちらもUS親和性5.0・日本独自性4.5+を持ち、グローバル展開の訴求軸として機能する。
+    </div>
+  </section>
+
+  <!-- ── 04 Ingredient ── -->
+  <section id="ingredient" class="section">
+    <div class="section-eyebrow">04 成分エビデンス（抹茶/EGCG）</div>
+    <h2 class="section-title">抹茶はLongevity訴求ができる数少ない成分<span class="section-updated">更新 2026-11-19</span></h2>
+    <p class="section-sub">競合の多くはトレンドとして抹茶を使用するが、成分効果を語れるブランドは存在しない。EGCGを中心に科学的根拠がある。</p>
+
+    <div class="ingredient-grid">
+      <div class="ingr-chip">
+        <div class="ingr-name">カテキン（EGCG）</div>
+        <div class="ingr-desc">紫外線・大気汚染による酸化ストレスへの作用。8週間左右顔比較試験でニキビ改善報告あり。NF-κB/AP-1経路への炎症抑制作用が細胞研究で確認。</div>
+        <span class="ingr-badge">臨床試験あり（限定的）</span>
+      </div>
+      <div class="ingr-chip">
+        <div class="ingr-name">テアニン</div>
+        <div class="ingr-desc">抹茶固有のアミノ酸。高いリラックス効果をもたらすほか、肌の水分保持・キメを整える働きがある。</div>
+        <span class="ingr-badge">機能性確認済み</span>
+      </div>
+      <div class="ingr-chip">
+        <div class="ingr-name">クロロフィル</div>
+        <div class="ingr-desc">葉緑素。消臭・殺菌作用に優れ、肌の赤み・炎症を落ち着かせる効果がある。</div>
+        <span class="ingr-badge">機能性確認済み</span>
+      </div>
+      <div class="ingr-chip">
+        <div class="ingr-name">ビタミンACE</div>
+        <div class="ingr-desc">うるおいを保つビタミンA、透明感を導くビタミンC、血行促進のビタミンEが黄金バランスで含有。エイジングケアをサポート。</div>
+        <span class="ingr-badge">科学的根拠あり</span>
+      </div>
+    </div>
+
+    <div class="callout warning" style="margin-top: 14px;">
+      ⚠️ topical NMN / resveratrolの臨床エビデンスは不十分。消費者への訴求はブランドマーケティング依存のリスクあり。抹茶（EGCG）は比較的エビデンスが豊富で、成分根拠をLongevityと接続しやすい。
+    </div>
+  </section>
+
+  <!-- ── 05 Competitor ── -->
+  <section id="competitor" class="section">
+    <div class="section-eyebrow">05 競合空白</div>
+    <h2 class="section-title">「日本製 × Longevity訴求」のポジションは空いている<span class="section-updated">更新 2026-11-19</span></h2>
+
+    <div class="card">
+      <div class="card-header">競合ブランドと訴求比較</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ブランド</th>
+              <th>国</th>
+              <th>抹茶/素材の使い方</th>
+              <th>Longevity訴求</th>
+              <th>ポジション</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="bold">TIRTIR</td>
+              <td>🇰🇷</td>
+              <td>抹茶PDRN（トレンドフック）</td>
+              <td>なし</td>
+              <td>トレンド活用</td>
+            </tr>
+            <tr>
+              <td class="bold">beplain</td>
+              <td>🇰🇷</td>
+              <td>抹茶カテキン（成分名は記載）</td>
+              <td>なし</td>
+              <td>成分訴求（浅い）</td>
+            </tr>
+            <tr>
+              <td class="bold">Dr.Ceuracle</td>
+              <td>🇰🇷</td>
+              <td>JEJU Matcha（産地訴求）</td>
+              <td>なし</td>
+              <td>日本感・産地</td>
+            </tr>
+            <tr>
+              <td class="bold">TATCHA</td>
+              <td>🇺🇸🇯🇵</td>
+              <td>発酵・米ぬか軸。抹茶は一部</td>
+              <td>なし（レガシー美意識）</td>
+              <td>高級日本伝統</td>
+            </tr>
+            <tr style="background: #f0fdfa;">
+              <td class="bold" style="color: var(--accent-text);">MOCHI MOCHI（仮）</td>
+              <td>🇯🇵</td>
+              <td>抹茶EGCG × サイエンス根拠</td>
+              <td style="color: var(--green); font-weight: 600;">✓ コアコンセプト</td>
+              <td style="font-weight: 600;">空白地帯</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 06 Conclusion ── -->
+  <section id="conclusion" class="section">
+    <div class="section-eyebrow">06 決定事項</div>
+    <h2 class="section-title">コンセプト選定<span class="section-updated">更新 2026-11-19</span></h2>
+
+    <div class="conclusion-box">
+      <div class="conclusion-head">ブランドコンセプト（選定案）</div>
+      <div class="conclusion-body">
+        <p>
+          <strong>「Japanese Longevity」</strong>をコアコンセプトとして選定。USで進行中の「美容→ウェルネス」シフトに対し、日本の伝統成分（抹茶・発酵）を科学的エビデンスと結びつけることで、韓国・米国ブランドが占めていない空白地帯を狙う。
+        </p>
+        <p>
+          第1弾SKUは<strong>抹茶EGCG配合の美容液（Serum）</strong>を軸に、フェイスパック・目元ケアへと展開。Longevityを「長く使い続けられる日用品」と定義することで、インバウンドのお土産需要と越境ECの継続購入需要を両立させる。
+        </p>
+        <p>
+          グローバル展開は<strong>Phase 1: 国内IB売上形成 → Phase 2: 英語圏SNS口コミ → Phase 3: Sephora等プレミアム小売</strong>のステップで進める（2026→2028年計画）。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 07 Open Items ── -->
+  <section id="open" class="section">
+    <div class="section-eyebrow">07 未確認事項</div>
+    <h2 class="section-title">次回更新で埋める項目<span class="section-updated">更新 2026-11-19</span></h2>
+
+    <div class="open-list">
+      <div class="open-item">11/20 第1弾商品決定の結論を本ドキュメントに反映</div>
+      <div class="open-item">US MoCRA登録要件・サンスクリーンOTC区分の確認</div>
+      <div class="open-item">NMN/NAD+の国別サプリ規制（中国：コスメOK・サプリNG）正式確認</div>
+      <div class="open-item">日本・台湾の消費者Longevity認知率調査（Mintel/Euromonitor一次情報）</div>
+      <div class="open-item">2026/11月の訪日消費免税方式変更（還付方式）の影響試算</div>
+      <div class="open-item">EGCG外用の最新臨床試験論文確認（2024–2025年）</div>
+      <div class="open-item">12/13プレゼンに向けた最終コンセプト決定（12/11デッドライン）</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>BRAND SUMMIT / MOCHI MOCHI BEAUTY（仮）— AnyMind Group</span>
+  <span>Last updated: 2026-11-19</span>
+</footer>
+
+<script>
+  // Active tab highlight on scroll
+  const sections = document.querySelectorAll('.section');
+  const tabs = document.querySelectorAll('.tab-btn');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        tabs.forEach(t => t.classList.remove('active'));
+        const active = document.querySelector(`.tab-btn[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Smooth scroll
+  tabs.forEach(t => {
+    t.addEventListener('click', e => {
+      e.preventDefault();
+      const id = t.getAttribute('href').slice(1);
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
