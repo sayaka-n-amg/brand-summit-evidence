@@ -6,912 +6,993 @@
 <title>IKIGAI Brand Strategy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Space+Grotesk:wght@600;700&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #fff; --fg: #0a0a0a; --fg-muted: #6b7280; --fg-subtle: #9ca3af;
+  --border: #e5e7eb; --bg-surface: #f9fafb; --bg-hover: #f3f4f6;
+  --accent: #0f766e; --accent-light: #f0fdfa; --accent-mid: #99f6e4; --accent-dark: #134e4a;
+  --blue: #2563eb; --blue-light: #eff6ff; --green: #059669; --amber: #d97706;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.07);
+}
+body { font-family: 'Inter','Noto Sans JP',-apple-system,sans-serif; background: var(--bg); color: var(--fg); font-size: 14px; line-height: 1.6; }
 
-  :root {
-    --bg: #ffffff;
-    --fg: #0a0a0a;
-    --fg-muted: #6b7280;
-    --fg-subtle: #9ca3af;
-    --border: #e5e7eb;
-    --bg-surface: #f9fafb;
-    --bg-hover: #f3f4f6;
-    --accent: #0f766e;         /* teal — IKIGAI brand color */
-    --accent-light: #f0fdfa;
-    --accent-mid: #99f6e4;
-    --accent-dark: #134e4a;
-    --blue: #2563eb;
-    --green: #059669;
-    --amber: #d97706;
-    --red: #dc2626;
-    --chip-border: #d1d5db;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.04);
-    --shadow: 0 4px 12px rgba(0,0,0,.08);
-  }
+/* Header */
+.brand-header { background: var(--fg); color: #fff; padding: 28px 24px; }
+.brand-header-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.brand-pill { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 3px 10px; border: 1px solid rgba(255,255,255,.2); border-radius: 100px; color: rgba(255,255,255,.5); margin-bottom: 10px; }
+.brand-name { font-family: 'Space Grotesk',sans-serif; font-size: clamp(32px,5vw,50px); font-weight: 700; letter-spacing: -.04em; color: #fff; line-height: 1; margin-bottom: 5px; }
+.brand-tagline { font-size: 13px; color: rgba(255,255,255,.5); }
+.brand-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding-bottom: 3px; }
+.brand-status { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 100px; background: rgba(15,118,110,.4); color: #5eead4; }
+.status-dot { width: 5px; height: 5px; border-radius: 50%; background: #5eead4; }
+.meta-text { font-size: 11px; color: rgba(255,255,255,.35); }
 
-  body {
-    font-family: 'Inter', 'Noto Sans JP', -apple-system, sans-serif;
-    background: var(--bg);
-    color: var(--fg);
-    font-size: 14px;
-    line-height: 1.6;
-    min-height: 100vh;
-  }
+/* Nav */
+.nav-wrapper { background: var(--bg); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50; }
+.nav-inner { max-width: 1000px; margin: 0 auto; padding: 0 24px; overflow-x: auto; display: flex; gap: 0; }
+.tab-btn { padding: 13px 15px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; border-bottom: 2px solid transparent; background: none; color: var(--fg-muted); white-space: nowrap; transition: all .15s; display: inline-flex; align-items: center; gap: 5px; }
+.tab-btn:hover { color: var(--fg); border-bottom-color: var(--border); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+.tab-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--amber); flex-shrink: 0; }
 
-  /* ── Brand Header ── */
-  .brand-header {
-    border-bottom: 1px solid var(--border);
-    background: var(--fg);
-    color: #fff;
-    padding: 36px 24px 32px;
-  }
-  .brand-header-inner {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .brand-pill {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border: 1px solid rgba(255,255,255,.25);
-    border-radius: 100px;
-    color: rgba(255,255,255,.7);
-    margin-bottom: 14px;
-  }
-  .brand-name {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(36px, 6vw, 56px);
-    font-weight: 700;
-    letter-spacing: -.04em;
-    line-height: 1;
-    color: #fff;
-    margin-bottom: 8px;
-  }
-  .brand-tagline {
-    font-size: 15px;
-    color: rgba(255,255,255,.65);
-    margin-bottom: 20px;
-    letter-spacing: .01em;
-  }
-  .brand-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
-    font-size: 11px;
-    color: rgba(255,255,255,.5);
-  }
-  .brand-meta .sep { color: rgba(255,255,255,.2); }
-  .status-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 100px;
-  }
-  .status-chip.draft { background: rgba(217,119,6,.2); color: #fbbf24; }
-  .status-chip.decided { background: rgba(5,150,105,.2); color: #34d399; }
-  .status-chip.tbd { background: rgba(255,255,255,.1); color: rgba(255,255,255,.6); }
-  .status-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+/* Pages */
+.page { display: none; max-width: 1000px; margin: 0 auto; padding: 36px 24px 80px; }
+.page.active { display: block; }
 
-  /* ── Sticky nav ── */
-  .nav-wrapper {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 10px 24px;
-  }
-  .tab-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-  }
-  .tab-btn {
-    padding: 5px 14px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    border: 1px solid var(--chip-border);
-    background: var(--bg);
-    color: var(--fg-muted);
-    text-decoration: none;
-    transition: all .15s;
-    white-space: nowrap;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .tab-btn:hover { background: var(--bg-hover); color: var(--fg); }
-  .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .tab-dot {
-    width: 5px; height: 5px; border-radius: 50%;
-    background: var(--amber);
-    flex-shrink: 0;
-  }
-  .tab-dot.green { background: var(--green); }
+/* Section headers */
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-subtle); margin-bottom: 6px; }
+.page-title { font-size: 21px; font-weight: 700; letter-spacing: -.02em; color: var(--fg); margin-bottom: 8px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.page-updated { font-size: 11px; color: var(--fg-subtle); font-weight: 400; }
+.page-lead { font-size: 13px; color: var(--fg-muted); line-height: 1.65; margin-bottom: 24px; max-width: 680px; }
 
-  /* ── Main ── */
-  .main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 36px 24px 100px;
-  }
+/* Card */
+.card { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-sm); margin-bottom: 14px; }
+.card-header { padding: 10px 18px; background: var(--bg-surface); border-bottom: 1px solid var(--border); font-size: 12px; font-weight: 600; color: var(--fg); display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.card-body { padding: 20px; }
+.card-note { font-size: 11px; color: var(--fg-subtle); margin-top: 10px; line-height: 1.5; }
 
-  /* ── Section ── */
-  .section {
-    margin-bottom: 56px;
-    scroll-margin-top: 90px;
-  }
-  .section-eyebrow {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--fg-subtle);
-    margin-bottom: 6px;
-  }
-  .section-title {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -.02em;
-    color: var(--fg);
-    margin-bottom: 4px;
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .section-updated { font-size: 11px; color: var(--fg-subtle); font-weight: 400; }
-  .section-sub {
-    font-size: 13px;
-    color: var(--fg-muted);
-    margin-bottom: 20px;
-    line-height: 1.65;
-  }
+/* Stats */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.stat-card { border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
+.stat-label { font-size: 11px; color: var(--fg-subtle); font-weight: 500; margin-bottom: 5px; }
+.stat-value { font-size: 22px; font-weight: 700; letter-spacing: -.03em; color: var(--fg); font-variant-numeric: tabular-nums; margin-bottom: 3px; }
+.stat-note { font-size: 11px; color: var(--fg-muted); line-height: 1.4; }
+.stat-source { font-size: 10px; color: var(--fg-subtle); margin-top: 3px; }
 
-  /* ── Decision banner ── */
-  .decision-banner {
-    border: 2px solid var(--accent);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 20px;
-  }
-  .decision-head {
-    background: var(--accent);
-    color: #fff;
-    padding: 10px 18px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .decision-body { padding: 18px 20px; }
-  .decision-body p { font-size: 14px; color: var(--fg-muted); line-height: 1.7; margin-bottom: 10px; }
-  .decision-body p:last-child { margin-bottom: 0; }
-  .decision-body strong { color: var(--fg); }
+/* Table */
+.table-wrap { overflow-x: auto; margin-bottom: 14px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 400px; }
+thead th { text-align: left; padding: 9px 12px; font-size: 10px; font-weight: 600; color: var(--fg-muted); letter-spacing: .04em; text-transform: uppercase; border-bottom: 1px solid var(--border); white-space: nowrap; background: var(--bg-surface); }
+tbody td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--fg); vertical-align: middle; }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: var(--bg-hover); }
+tbody tr.hl td { background: var(--accent-light); }
+td.bold { font-weight: 600; }
+td.muted { color: var(--fg-muted); }
+small.muted { color: var(--fg-muted); font-size: 11px; }
 
-  /* ── TBD banner ── */
-  .tbd-banner {
-    border: 1px dashed var(--chip-border);
-    border-radius: 10px;
-    padding: 20px;
-    background: var(--bg-surface);
-    text-align: center;
-    color: var(--fg-muted);
-    font-size: 13px;
-    margin-bottom: 20px;
-  }
-  .tbd-banner strong { color: var(--fg); display: block; font-size: 15px; margin-bottom: 4px; }
+/* Labels */
+.label { display: inline-flex; align-items: center; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+.label.decided { background: #d1fae5; color: #065f46; }
+.label.candidate { background: #fef3c7; color: #92400e; }
+.label.tbd { background: var(--bg-surface); color: var(--fg-subtle); border: 1px solid var(--border); }
 
-  /* ── Card ── */
-  .card {
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    margin-bottom: 14px;
-  }
-  .card-header {
-    padding: 11px 18px;
-    background: var(--bg-surface);
-    border-bottom: 1px solid var(--border);
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--fg);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-  }
-  .card-body { padding: 18px 20px; }
-  .card-body p { font-size: 13px; color: var(--fg-muted); line-height: 1.65; }
+/* Decision banner */
+.decision-banner { border: 2px solid var(--accent); border-radius: 10px; overflow: hidden; margin-bottom: 20px; }
+.decision-head { background: var(--accent); color: #fff; padding: 10px 18px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.decision-body { padding: 16px 20px; }
+.decision-body p { font-size: 14px; color: var(--fg-muted); line-height: 1.7; margin-bottom: 10px; }
+.decision-body p:last-child { margin-bottom: 0; }
+.decision-body strong { color: var(--fg); }
 
-  /* ── Status label ── */
-  .label {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 4px;
-    white-space: nowrap;
-  }
-  .label.decided { background: #d1fae5; color: #065f46; }
-  .label.candidate { background: #fef3c7; color: #92400e; }
-  .label.rejected { background: #fee2e2; color: #991b1b; }
-  .label.tbd { background: var(--bg-surface); color: var(--fg-subtle); border: 1px solid var(--border); }
+/* Insight */
+.insight-box { background: var(--fg); color: #fff; border-radius: 10px; padding: 18px 22px; margin-bottom: 20px; }
+.insight-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 8px; }
+.insight-text { font-size: 14px; font-weight: 600; line-height: 1.6; color: #fff; }
+.insight-text em { color: #5eead4; font-style: normal; }
 
-  /* ── Table ── */
-  .table-wrap { overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 460px; }
-  thead th {
-    text-align: left;
-    padding: 9px 14px;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--fg-muted);
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    border-bottom: 1px solid var(--border);
-    white-space: nowrap;
-    background: var(--bg-surface);
-  }
-  tbody td {
-    padding: 12px 14px;
-    border-bottom: 1px solid var(--border);
-    color: var(--fg);
-    vertical-align: middle;
-    line-height: 1.4;
-  }
-  tbody tr:last-child td { border-bottom: none; }
-  tbody tr:hover td { background: var(--bg-hover); }
-  tbody tr.highlight td { background: var(--accent-light); }
-  td.bold { font-weight: 600; }
-  td.muted { color: var(--fg-muted); }
+/* Two-col layout */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+@media (max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
 
-  /* Score bar */
-  .score-bar { display: flex; align-items: center; gap: 8px; }
-  .score-track { flex: 1; height: 4px; background: var(--border); border-radius: 2px; min-width: 50px; }
-  .score-fill { height: 100%; border-radius: 2px; background: var(--blue); }
-  .score-fill.top { background: var(--green); }
-  .score-num { font-size: 12px; font-weight: 700; color: var(--fg-muted); min-width: 24px; text-align: right; font-variant-numeric: tabular-nums; }
+/* Strategy choice cards */
+.strategy-choice { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+@media (max-width: 600px) { .strategy-choice { grid-template-columns: 1fr; } }
+.strategy-card { border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+.strategy-card.selected { border-color: var(--accent); border-width: 2px; background: var(--accent-light); }
+.strategy-card.not-selected { opacity: .55; }
+.strategy-verdict { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
+.strategy-verdict.yes { color: var(--green); }
+.strategy-verdict.no { color: var(--fg-subtle); }
+.strategy-title { font-size: 15px; font-weight: 700; color: var(--fg); margin-bottom: 8px; line-height: 1.3; }
+.strategy-desc { font-size: 13px; color: var(--fg-muted); line-height: 1.6; }
 
-  /* ── Stat grid ── */
-  .stat-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-  .stat-card { border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
-  .stat-label { font-size: 11px; color: var(--fg-subtle); font-weight: 500; margin-bottom: 6px; }
-  .stat-value { font-size: 24px; font-weight: 700; letter-spacing: -.03em; color: var(--fg); font-variant-numeric: tabular-nums; margin-bottom: 4px; }
-  .stat-note { font-size: 11px; color: var(--fg-muted); line-height: 1.4; }
-  .stat-source { font-size: 10px; color: var(--fg-subtle); margin-top: 4px; }
+/* 飲む×塗る */
+.longevity-pair { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 14px; margin-bottom: 20px; }
+@media (max-width: 600px) { .longevity-pair { grid-template-columns: 1fr; } .longevity-x { text-align: center; } }
+.longevity-box { border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+.longevity-box.drink { border-color: #60a5fa; background: var(--blue-light); }
+.longevity-box.apply { border-color: var(--accent-mid); background: var(--accent-light); }
+.longevity-tag { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 7px; }
+.longevity-box.drink .longevity-tag { color: var(--blue); }
+.longevity-box.apply .longevity-tag { color: var(--accent); }
+.longevity-name { font-size: 17px; font-weight: 700; color: var(--fg); margin-bottom: 6px; }
+.longevity-desc { font-size: 12px; color: var(--fg-muted); line-height: 1.55; }
+.longevity-x { font-size: 26px; font-weight: 700; color: var(--fg-subtle); text-align: center; }
 
-  /* ── Evidence items ── */
-  .evidence-list { display: flex; flex-direction: column; gap: 10px; }
-  .ev {
-    display: flex; gap: 14px; padding: 14px 16px;
-    border: 1px solid var(--border); border-radius: 8px; align-items: flex-start;
-  }
-  .ev-icon {
-    flex-shrink: 0; width: 32px; height: 32px; border-radius: 8px;
-    background: var(--bg-surface); border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center; font-size: 15px;
-  }
-  .ev-title { font-size: 13px; font-weight: 600; color: var(--fg); margin-bottom: 3px; line-height: 1.4; }
-  .ev-desc { font-size: 12px; color: var(--fg-muted); line-height: 1.55; }
-  .ev-source { font-size: 10px; color: var(--fg-subtle); margin-top: 5px; }
+/* SKU cards */
+.sku-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 14px; }
+.sku-card { border: 1px solid var(--border); border-radius: 10px; padding: 16px; position: relative; }
+.sku-card.hero { border-color: var(--accent); border-width: 2px; }
+.sku-hero-badge { position: absolute; top: -10px; left: 14px; background: var(--accent); color: #fff; font-size: 10px; font-weight: 700; padding: 2px 10px; border-radius: 100px; text-transform: uppercase; letter-spacing: .06em; }
+.sku-name { font-size: 14px; font-weight: 700; color: var(--fg); margin-bottom: 6px; }
+.sku-desc { font-size: 12px; color: var(--fg-muted); line-height: 1.55; margin-bottom: 10px; }
+.sku-row { display: flex; gap: 6px; font-size: 12px; color: var(--fg-muted); align-items: flex-start; margin-bottom: 4px; }
+.sku-row.pro::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+.sku-row.con::before { content: '△'; color: var(--amber); font-weight: 700; flex-shrink: 0; }
 
-  /* ── SKU Option cards ── */
-  .sku-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 16px; }
-  .sku-card {
-    border: 1px solid var(--border); border-radius: 10px; padding: 18px;
-    position: relative; transition: box-shadow .15s;
-  }
-  .sku-card:hover { box-shadow: var(--shadow); }
-  .sku-card.hero { border-color: var(--accent); border-width: 2px; }
-  .sku-hero-badge {
-    position: absolute; top: -10px; left: 16px;
-    background: var(--accent); color: #fff;
-    font-size: 10px; font-weight: 700; padding: 2px 10px; border-radius: 100px;
-    letter-spacing: .06em; text-transform: uppercase;
-  }
-  .sku-name { font-size: 15px; font-weight: 700; color: var(--fg); margin-bottom: 6px; }
-  .sku-desc { font-size: 12px; color: var(--fg-muted); line-height: 1.55; margin-bottom: 12px; }
-  .sku-pros { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
-  .sku-pro {
-    display: flex; gap: 6px; font-size: 12px; color: var(--fg-muted);
-    align-items: flex-start;
-  }
-  .sku-pro::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
-  .sku-con {
-    display: flex; gap: 6px; font-size: 12px; color: var(--fg-muted);
-    align-items: flex-start;
-  }
-  .sku-con::before { content: '△'; color: var(--amber); font-weight: 700; flex-shrink: 0; }
+/* Evidence */
+.ev-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+.ev { display: flex; gap: 12px; padding: 13px 15px; border: 1px solid var(--border); border-radius: 8px; align-items: flex-start; }
+.ev-icon { flex-shrink: 0; width: 30px; height: 30px; border-radius: 7px; background: var(--bg-surface); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.ev-title { font-size: 13px; font-weight: 600; color: var(--fg); margin-bottom: 3px; line-height: 1.4; }
+.ev-desc { font-size: 12px; color: var(--fg-muted); line-height: 1.55; }
+.ev-source { font-size: 10px; color: var(--fg-subtle); margin-top: 4px; }
 
-  /* ── Ingredient chips ── */
-  .ingr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
-  .ingr-chip { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
-  .ingr-name { font-size: 13px; font-weight: 600; color: var(--fg); margin-bottom: 4px; }
-  .ingr-desc { font-size: 12px; color: var(--fg-muted); line-height: 1.5; }
-  .ingr-badge {
-    display: inline-block; font-size: 10px; font-weight: 600;
-    padding: 2px 6px; border-radius: 4px; margin-top: 6px;
-    background: var(--accent-light); color: var(--accent-dark);
-  }
+/* Callout */
+.callout { padding: 13px 16px; border-radius: 8px; font-size: 13px; line-height: 1.65; margin-bottom: 14px; }
+.callout.info { background: var(--accent-light); border: 1px solid var(--accent-mid); color: var(--accent-dark); }
+.callout.warning { background: #fffbeb; border: 1px solid #fde68a; border-left: 3px solid var(--amber); color: #92400e; }
 
-  /* ── Callout ── */
-  .callout { padding: 13px 16px; border-radius: 8px; font-size: 13px; line-height: 1.65; margin-top: 14px; }
-  .callout.info { background: var(--accent-light); border: 1px solid var(--accent-mid); color: var(--accent-dark); }
-  .callout.warning { background: #fffbeb; border-left: 3px solid var(--amber); border-top: 1px solid #fde68a; border-right: 1px solid #fde68a; border-bottom: 1px solid #fde68a; color: #92400e; }
+/* Ingredient grid */
+.ingr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.ingr-chip { border: 1px solid var(--border); border-radius: 8px; padding: 12px 13px; }
+.ingr-name { font-size: 13px; font-weight: 600; color: var(--fg); margin-bottom: 4px; }
+.ingr-desc { font-size: 12px; color: var(--fg-muted); line-height: 1.5; }
+.ingr-badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 4px; margin-top: 5px; background: var(--accent-light); color: var(--accent-dark); }
 
-  /* ── Roadmap ── */
-  .roadmap { display: flex; flex-direction: column; gap: 0; }
-  .rm-row {
-    display: grid; grid-template-columns: 100px 1fr;
-    gap: 0; position: relative;
-  }
-  .rm-row::before {
-    content: ''; position: absolute; left: 49px; top: 32px; bottom: -24px;
-    width: 1px; background: var(--border); z-index: 0;
-  }
-  .rm-row:last-child::before { display: none; }
-  .rm-time {
-    padding: 20px 16px 20px 0;
-    text-align: right;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--fg-muted);
-    font-variant-numeric: tabular-nums;
-    position: relative;
-  }
-  .rm-dot {
-    position: absolute; right: -6px; top: 24px;
-    width: 12px; height: 12px; border-radius: 50%;
-    background: var(--border); border: 2px solid var(--bg);
-    z-index: 1;
-  }
-  .rm-dot.active { background: var(--accent); }
-  .rm-content {
-    padding: 16px 0 24px 24px;
-    border-left: none;
-  }
-  .rm-phase { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
-  .rm-title { font-size: 15px; font-weight: 700; color: var(--fg); margin-bottom: 6px; }
-  .rm-items { display: flex; flex-direction: column; gap: 4px; }
-  .rm-item { font-size: 12px; color: var(--fg-muted); display: flex; gap: 6px; }
-  .rm-item::before { content: '—'; color: var(--fg-subtle); flex-shrink: 0; }
+/* Chart */
+.chart-wrap canvas { display: block; }
+.chart-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--fg-muted); }
+.legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
 
-  /* ── Open items ── */
-  .open-list { display: flex; flex-direction: column; gap: 6px; }
-  .open-item {
-    display: flex; gap: 10px; align-items: flex-start;
-    font-size: 13px; color: var(--fg-muted);
-    padding: 10px 14px; border: 1px solid var(--border); border-radius: 6px;
-  }
-  .open-item::before { content: '○'; flex-shrink: 0; font-size: 11px; color: var(--fg-subtle); margin-top: 2px; }
-  .open-item .deadline { margin-left: auto; font-size: 11px; color: var(--accent); font-weight: 600; white-space: nowrap; }
+/* Roadmap */
+.roadmap { display: flex; flex-direction: column; }
+.rm-row { display: grid; grid-template-columns: 86px 1fr; position: relative; }
+.rm-row::before { content: ''; position: absolute; left: 42px; top: 30px; bottom: -24px; width: 1px; background: var(--border); }
+.rm-row:last-child::before { display: none; }
+.rm-time { padding: 18px 12px 18px 0; text-align: right; font-size: 12px; font-weight: 700; color: var(--fg-muted); position: relative; font-variant-numeric: tabular-nums; }
+.rm-dot { position: absolute; right: -6px; top: 22px; width: 12px; height: 12px; border-radius: 50%; background: var(--border); border: 2px solid var(--bg); }
+.rm-dot.active { background: var(--accent); }
+.rm-content { padding: 14px 0 22px 22px; }
+.rm-phase { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+.rm-title { font-size: 14px; font-weight: 700; color: var(--fg); margin-bottom: 7px; }
+.rm-items { display: flex; flex-direction: column; gap: 4px; }
+.rm-item { font-size: 12px; color: var(--fg-muted); display: flex; gap: 6px; }
+.rm-item::before { content: '—'; color: var(--fg-subtle); flex-shrink: 0; }
 
-  /* ── Footer ── */
-  footer {
-    max-width: 900px; margin: 0 auto; padding: 20px 24px 40px;
-    border-top: 1px solid var(--border);
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 8px; font-size: 11px; color: var(--fg-subtle);
-  }
+/* Bar in table cell */
+.bar-cell { display: flex; align-items: center; gap: 7px; }
+.mini-bar { height: 6px; border-radius: 3px; background: var(--accent); flex-shrink: 0; }
+.mini-bar.gray { background: var(--fg-subtle); }
 
-  /* ── Responsive ── */
-  @media (max-width: 600px) {
-    .brand-header { padding: 24px 16px 20px; }
-    .nav-inner { padding: 8px 16px; }
-    .main { padding: 24px 16px 60px; }
-    .sku-grid { grid-template-columns: 1fr; }
-    .rm-row { grid-template-columns: 70px 1fr; }
-  }
+@media (max-width: 600px) {
+  .brand-header { padding: 18px 16px; }
+  .page { padding: 24px 16px 60px; }
+  .nav-inner { padding: 0 16px; }
+  .sku-grid, .strategy-choice, .ingr-grid { grid-template-columns: 1fr; }
+  .rm-row { grid-template-columns: 68px 1fr; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .longevity-pair { gap: 8px; }
+}
 </style>
 </head>
 <body>
 
-<!-- ── Brand Header ── -->
 <div class="brand-header">
   <div class="brand-header-inner">
-    <div class="brand-pill">Brand Strategy Document</div>
-    <div class="brand-name">IKIGAI</div>
-    <div class="brand-tagline">Japanese Longevity Beauty — 日本発の、長生き美容</div>
+    <div>
+      <div class="brand-pill">Brand Strategy</div>
+      <div class="brand-name">IKIGAI</div>
+      <div class="brand-tagline">Japanese Longevity Beauty — 日本発の、長生き美容</div>
+    </div>
     <div class="brand-meta">
-      <span>I-ne様向け提案</span>
-      <span class="sep">|</span>
-      <span>AnyMind Group</span>
-      <span class="sep">|</span>
-      <span>更新 2026-11-19</span>
-      <span class="sep">|</span>
-      <span class="status-chip decided"><span class="status-dot"></span>2026.11</span>
+      <span class="meta-text">I-ne様向け提案</span>
+      <span class="meta-text">·</span><span class="meta-text">AnyMind Group</span>
+      <span class="meta-text">·</span><span class="meta-text">2026-11-19</span>
+      <span class="brand-status"><span class="status-dot"></span>策定中</span>
     </div>
   </div>
 </div>
 
-<!-- ── Navigation ── -->
 <div class="nav-wrapper">
   <div class="nav-inner">
-    <div class="tab-row">
-      <a href="#concept" class="tab-btn active">ブランドコンセプト</a>
-      <a href="#hero-sku" class="tab-btn"><span class="tab-dot"></span>Hero SKU</a>
-      <a href="#pos-data" class="tab-btn">市場POS</a>
-      <a href="#why-longevity" class="tab-btn">なぜLongevityか</a>
-      <a href="#ingredient" class="tab-btn">成分戦略</a>
-      <a href="#competitor" class="tab-btn">競合空白</a>
-      <a href="#roadmap" class="tab-btn">ロードマップ</a>
+    <button class="tab-btn active" data-page="concept">ブランドコンセプト</button>
+    <button class="tab-btn" data-page="market-strategy"><span class="tab-dot"></span>市場戦略</button>
+    <button class="tab-btn" data-page="hero-sku">Hero SKU</button>
+    <button class="tab-btn" data-page="pos-data">POS実態</button>
+    <button class="tab-btn" data-page="pos-brand">ブランドシェア</button>
+    <button class="tab-btn" data-page="category">カテゴリ市場</button>
+    <button class="tab-btn" data-page="trend">トレンド</button>
+    <button class="tab-btn" data-page="ingredient">成分戦略</button>
+    <button class="tab-btn" data-page="competitor">競合空白</button>
+    <button class="tab-btn" data-page="roadmap">ロードマップ</button>
+  </div>
+</div>
+
+<!-- ── 01 Brand Concept ── -->
+<div id="concept" class="page active">
+  <div class="eyebrow">01 ブランドコンセプト</div>
+  <h1 class="page-title">なぜ「IKIGAI」か<span class="page-updated">更新 2026-11-19</span></h1>
+  <p class="page-lead">「生き甲斐（IKIGAI）」はすでにグローバルで認知されている日本発のウェルネス概念。USのLongevityトレンドとの接合点になる唯一の日本語ブランド名。</p>
+
+  <div class="decision-banner">
+    <div class="decision-head">✓ ブランド名 &amp; コアコンセプト</div>
+    <div class="decision-body">
+      <p>ブランド名：<strong>IKIGAI</strong><br>コアコンセプト：<strong>Japanese Longevity Beauty</strong>（日本の知恵と科学が育む、長く美しくある力）</p>
+      <p>IKIGAIは「情熱・使命・職業・天職」の交点として米国でも広く知られており、Longevityと「長く活きる理由」を自然につなげる言葉。外見の即効性でなく、<strong>日常に根ざした長期的な肌の健康</strong>を提供するブランドとして位置づける。ブランド名がコンセプトを説明する自己説明力を持ち、認知獲得コストを大幅に下げる。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">2つの方向性 — IKIGAIはグローバルブランドを選択（I-ne向けAnyMind提案 2026.08）</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>観点</th><th>①完全インバウンド向け</th><th>②グローバルブランド（IKIGAI）</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">最終目的</td><td class="muted">ドンキで短期売上最大化</td><td>インバウンド起点でUSへ展開</td></tr>
+          <tr><td class="bold">顧客課題</td><td class="muted">訪日中に何を買いたいか</td><td>日常生活で何を必要とするか</td></tr>
+          <tr><td class="bold">商品</td><td class="muted">土産・限定・衝動買い</td><td>継続購入できる美容品</td></tr>
+          <tr><td class="bold">チャネル</td><td class="muted">ドンキ・免税</td><td>Amazon・Sephora・D2C</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="ev-list">
+    <div class="ev">
+      <div class="ev-icon">🎯</div>
+      <div>
+        <div class="ev-title">「IKIGAI」はUS書籍・TEDトーク・Netflixで長寿コンセプトとして認知済み</div>
+        <div class="ev-desc">ベストセラー書籍・TEDトーク・Netflixで「IKIGAI＝日本の長寿哲学」として広く知られている。ブランド名がコンセプトを説明するため、ゼロからの認知獲得コストが低い。</div>
+      </div>
+    </div>
+    <div class="ev">
+      <div class="ev-icon">🇯🇵</div>
+      <div>
+        <div class="ev-title">日本はFOSHU規制があり、Longevity成分の科学的権威を持てる</div>
+        <div class="ev-desc">NMN国内市場¥250億超（健康産業新聞2024）。韓国がVital ByBeautieで先行する中、日本は「規制が整ったLongevity先進国」としての科学的権威をブランドに転化できる。</div>
+        <div class="ev-source">出典: 健康産業新聞 (2024.07)</div>
+      </div>
     </div>
   </div>
 </div>
 
-<main class="main">
+<!-- ── 02 Market Strategy ── -->
+<div id="market-strategy" class="page">
+  <div class="eyebrow">02 市場戦略</div>
+  <h1 class="page-title">競合に勝てる市場の取り方<span class="page-updated">更新 2026-11-19</span></h1>
+  <p class="page-lead">マーケティング戦略の基本は2択：大きい市場で他社よりシェアを取るか、小さいニッチを抑えるか。IKIGAIはどちらで戦うか。</p>
 
-  <!-- ── 01 Brand Concept ── -->
-  <section id="concept" class="section">
-    <div class="section-eyebrow">01 ブランドコンセプト</div>
-    <h2 class="section-title">なぜ「IKIGAI」という名前か<span class="section-updated">更新 2026-11-19</span></h2>
-    <p class="section-sub">「生き甲斐（IKIGAI）」は、すでにグローバルで認知されている日本発のウェルネス概念。USのLongevityトレンドとの接合点になる。</p>
-
-    <div class="decision-banner">
-      <div class="decision-head">✓ 決定事項 — ブランド名 &amp; コンセプト</div>
-      <div class="decision-body">
-        <p>
-          ブランド名：<strong>IKIGAI</strong><br>
-          コアコンセプト：<strong>Japanese Longevity Beauty</strong>（日本の知恵と科学が育む、長く美しくある力）
-        </p>
-        <p>
-          IKIGAIは「情熱・使命・職業・天職」の交点として米国でも広く知られ、Longevityと「生きがい＝長く活きる理由」を自然につなげる言葉。外見の即効性でなく、<strong>日常に根ざした長期的な肌の健康</strong>を提供するブランドとして位置づける。
-        </p>
-      </div>
+  <div class="strategy-choice">
+    <div class="strategy-card not-selected">
+      <div class="strategy-verdict no">× IKIGAIは選ばない</div>
+      <div class="strategy-title">大きい市場でシェアを取る</div>
+      <div class="strategy-desc">NMNサプリ市場はドンキ免税12週で¥3.99億。ヒロソフィーが49.8%を独占し、米国向けでは72%。同じ土俵で後発参入しても価格競争しか勝てない。</div>
     </div>
+    <div class="strategy-card selected">
+      <div class="strategy-verdict yes">✓ IKIGAIはこちら</div>
+      <div class="strategy-title">「塗るLongevity」というニッチを最初に定義する</div>
+      <div class="strategy-desc">「Longevity × スキンケア」の日本発ブランドはゼロ。米国でEye CreamがLongevity系2位に浮上。競合不在のニッチを先に取り、カテゴリを定義する。</div>
+    </div>
+  </div>
 
+  <div class="insight-box">
+    <div class="insight-label">IKIGAIの答え</div>
+    <div class="insight-text">「<em>飲むLongevity</em>」は既にヒロソフィーが支配している（米国シェア72%）。IKIGAIは「<em>塗るLongevity</em>」の第一人者になる——日本発の美容液とスキンケアでLongevityを"肌に届ける"ブランド。将来、「<em>飲む×塗る</em>」をセットで提案するエコシステムへ拡張。</div>
+  </div>
+
+  <div class="longevity-pair">
+    <div class="longevity-box drink">
+      <div class="longevity-tag">既存市場（競合あり）</div>
+      <div class="longevity-name">飲むLongevity</div>
+      <div class="longevity-desc">NMNサプリ・NAD+・5-ALA。ヒロソフィーなどが市場を形成済み。東アジア（中国・韓国・台湾）が主な購買層。まとめ買い・高単価が特徴。</div>
+      <div style="margin-top:12px"><span class="label tbd">Phase 3以降で検討</span></div>
+    </div>
+    <div class="longevity-x">×</div>
+    <div class="longevity-box apply">
+      <div class="longevity-tag">新規ニッチ（IKIGAI独占）</div>
+      <div class="longevity-name">塗るLongevity</div>
+      <div class="longevity-desc">Longevity訴求の美容液・アイクリーム・スキンケア。競合ゼロ。米国でEye Creamが既にLongevity系2位に浮上。科学成分（EGCG）で根拠を語れる唯一の日本ブランド。</div>
+      <div style="margin-top:12px"><span class="label decided">IKIGAIの主戦場</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">ニッチ戦略の根拠 — なぜ「塗るLongevity」が今なのか</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>観点</th><th>飲むLongevity（NMNサプリ）</th><th>塗るLongevity（スキンケア）</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">競合状況</td><td>ヒロソフィーが支配。後発は価格競争のみ</td><td><strong style="color:var(--green)">競合ゼロ（Longevity訴求ブランドなし）</strong></td></tr>
+          <tr><td class="bold">US需要</td><td>安定。東アジア主体</td><td><strong style="color:var(--green)">急拡大中（Eye Cream・Serum）</strong></td></tr>
+          <tr><td class="bold">継続購入</td><td>◎（日課として飲む）</td><td>◎（毎日使う）</td></tr>
+          <tr><td class="bold">B/Aコンテンツ</td><td>△（見た目変化を証明しにくい）</td><td><strong style="color:var(--green)">◎（肌変化が視覚的）</strong></td></tr>
+          <tr><td class="bold">IKIGAIでの役割</td><td class="muted">Phase 3以降で「飲む×塗る」セット展開</td><td><strong>Phase 1〜2 コアSKU</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">ドンキ免税全体（コスメ・ヘルスケア合計¥203億）からみた欧米購買傾向</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>国・地域</th><th>TOP購買カテゴリ</th><th>サプリの立ち位置</th><th>IKIGAIへの示唆</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td class="bold" style="color:var(--accent-dark)">🇺🇸🇲🇽🇦🇺 欧米・豪州</td><td>毛穴撫子・fino・ビオレUV・&honey・medicube</td><td>ヒロソフィーが圧倒的1位だが一般的ではない</td><td style="color:var(--accent-dark);font-weight:600">SNS・TikTokバズ型スキンケアが主流 → IKIGAI接続先はここ</td></tr>
+          <tr><td class="bold">🇨🇳 中国</td><td>ヒロソフィー（12.5%で1位）・ファンケルサプリ</td><td>エイジング系サプリに集中。最も強い</td><td class="muted">NMNは中国向けでは競合強い</td></tr>
+          <tr><td class="bold">🇰🇷 韓国</td><td>ビオレ・Anua・すっぴんパウダー・毛穴撫子</td><td>TOP10に入らない</td><td>スキンケア・洗顔が主戦場</td></tr>
+          <tr><td class="bold">🇹🇼🇭🇰 台湾・香港</td><td>DHC・UHAグミ・ファンケル</td><td>DHCサプリ・ビタミン系が上位</td><td class="muted">手軽なサプリ・ビタミン好み。高単価NMNは中国向け</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-note">出典: ドンキ免税全体（コスメ・ヘルスケア・日用品）2026/8〜11 TOP10。なお毛穴撫子・fino・ビオレは全国籍でTOP10に入る「日本土産の定番」。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">「飲む×塗るLongevity」エコシステム — IKIGAIの長期ビジョン</div>
+    <div class="card-body">
+      <div class="chart-wrap" style="height:220px"><canvas id="ecosystemChart"></canvas></div>
+      <div class="card-note">Phase 1は「塗るLongevity」でニッチ確立 → Phase 3で「飲む×塗る」の完全IKIGAIライフスタイルへ拡張</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 03 Hero SKU ── -->
+<div id="hero-sku" class="page">
+  <div class="eyebrow">03 Hero SKU</div>
+  <h1 class="page-title">第1弾商品を何にするか<span class="page-updated">更新 2026-11-19</span></h1>
+  <p class="page-lead">IKIGAIの顔となる1本。B/Aコンテンツとの相性・英語圏親和性・インバウンド衝動買い適性・Longevityとの接続で評価。</p>
+
+  <div class="two-col">
     <div class="card">
-      <div class="card-header">ブランドの2方向性（I-ne向けAnyMind提案 2026.08）</div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>観点</th>
-              <th>①完全インバウンド向け</th>
-              <th>②グローバルブランド（IKIGAI採用）</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td class="bold">最終目的</td><td class="muted">ドンキで短期売上最大化</td><td>インバウンド起点でUSへ海外展開</td></tr>
-            <tr><td class="bold">顧客課題</td><td class="muted">訪日中に何を買いたいか</td><td>日常生活で何を必要とするか</td></tr>
-            <tr><td class="bold">商品</td><td class="muted">土産・限定・衝動買い</td><td>継続購入できる美容品・サプリ</td></tr>
-            <tr><td class="bold">ブランド価値</td><td class="muted">「日本らしさ」「旅の記念」</td><td>日本発の機能価値＋グローバル通用ブランド</td></tr>
-            <tr><td class="bold">チャネル</td><td class="muted">ドンキ・免税</td><td>Amazon・Sephora・D2C</td></tr>
-          </tbody>
-        </table>
+      <div class="card-header">Hero SKU評価スコア（5点満点）</div>
+      <div class="card-body">
+        <div class="chart-wrap" style="height:220px"><canvas id="skuRadarChart"></canvas></div>
       </div>
     </div>
-  </section>
-
-  <!-- ── 02 Hero SKU ── -->
-  <section id="hero-sku" class="section">
-    <div class="section-eyebrow">02 Hero SKU</div>
-    <h2 class="section-title">第1弾商品を何にするか<span class="section-updated">更新 2026-11-19</span></h2>
-    <p class="section-sub">IKIGAIの顔となる1本。「これを見るとIKIGAIだとわかる」SKUを選ぶ。B/Aコンテンツとの相性・英語圏親和性・インバウンド衝動買い適性で評価。</p>
-
-    <div class="sku-grid">
-      <div class="sku-card hero">
-        <div class="sku-hero-badge">◎ 最有力候補</div>
-        <div class="sku-name">🍵 抹茶EGCGセラム</div>
-        <div class="sku-desc">抹茶のカテキン（EGCG）を主成分にした美容液。ニキビ・毛穴・肌荒れに効く根拠を持ち、科学的Longevityを訴求できる唯一の素材。</div>
-        <div class="sku-pros">
-          <div class="sku-pro">英語圏比率40.9%・市場規模カテゴリ最高</div>
-          <div class="sku-pro">B/Aコンテンツ（毛穴・赤み）が作りやすい</div>
-          <div class="sku-pro">競合に成分根拠を語るブランドが存在しない</div>
-          <div class="sku-pro">US親和性5.0（抹茶はUS最高認知素材）</div>
-        </div>
-        <div class="sku-con">△ EGCG外用のエビデンスは限定的（2024–25年論文確認要）</div>
-        <div style="margin-top: 10px;"><span class="label candidate">最有力</span></div>
-      </div>
-
-      <div class="sku-card">
-        <div class="sku-name">👁️ 目元ケア（Eye Patch / Serum）</div>
-        <div class="sku-desc">Longevityトレンドの最前線。BeautyofJoseonが680万再生、Rhodeがバズを連鎖。USでgoogle trend上昇中。</div>
-        <div class="sku-pros">
-          <div class="sku-pro">USで今最も伸びているカテゴリ</div>
-          <div class="sku-pro">Longevityとの接続が自然（エイジング逆転）</div>
-          <div class="sku-pro">美顔器クロスセル（Medicube方式）に展開可能</div>
-        </div>
-        <div class="sku-con">△ 後発。BeautyofJoseonへの対抗策が必要</div>
-        <div class="sku-con">△ Hero SKUにするにはブランドストーリー設計が先</div>
-        <div style="margin-top: 10px;"><span class="label tbd">Phase2検討</span></div>
-      </div>
-
-      <div class="sku-card">
-        <div class="sku-name">📦 抹茶フェイスパック</div>
-        <div class="sku-desc">毛穴・米・美容成分など英語圏で人気の訴求に集中。セット展開でお土産需要に対応。</div>
-        <div class="sku-pros">
-          <div class="sku-pro">インバウンド衝動買い・まとめ買いに最適</div>
-          <div class="sku-pro">視認性が高く、棚で勝ちやすい</div>
-        </div>
-        <div class="sku-con">△ 継続購入につなげにくい（グローバル展開に弱い）</div>
-        <div class="sku-con">△ 競合（毛穴撫子・京都小町）が強い</div>
-        <div style="margin-top: 10px;"><span class="label tbd">インバウンド補完SKU</span></div>
-      </div>
-    </div>
-
     <div class="card">
-      <div class="card-header">Hero SKU評価マトリクス</div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>SKU</th>
-              <th>B/A作りやすさ</th>
-              <th>継続購入</th>
-              <th>英語圏親和性</th>
-              <th>競合空白</th>
-              <th>Longevity接続</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="highlight">
-              <td class="bold">🍵 抹茶EGCGセラム</td>
-              <td>◎</td><td>◎</td><td>◎</td><td>◎（成分根拠で空白）</td><td>◎</td>
-            </tr>
-            <tr>
-              <td class="bold">👁️ 目元ケア</td>
-              <td>○</td><td>○</td><td>◎</td><td>△（BOJ後発）</td><td>◎</td>
-            </tr>
-            <tr>
-              <td class="bold">📦 フェイスパック</td>
-              <td>○</td><td>△</td><td>○</td><td>△（競合多）</td><td>△</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="card-header">総合スコア比較</div>
+      <div class="card-body">
+        <div class="chart-wrap" style="height:220px"><canvas id="skuBarChart"></canvas></div>
       </div>
     </div>
+  </div>
 
-  </section>
-
-  <!-- ── POS Data ── -->
-  <section id="pos-data" class="section">
-    <div class="section-eyebrow">03 市場POS — Longevity系商品の国別実態</div>
-    <h2 class="section-title">東アジアはNMNサプリ、米州はスキンケア<span class="section-updated">集計期間 2026/8/26〜11/17（約12週）</span></h2>
-    <p class="section-sub">ドンキホーテ免税POSデータ（国籍判明分）。Longevity系成分含有商品対象。国ごとに購買行動が明確に分かれており、IKIGAIのターゲット国選定に直結する。</p>
-
-    <div class="stat-grid">
-      <div class="stat-card">
-        <div class="stat-label">ドンキ免税 合計売上</div>
-        <div class="stat-value">¥3.99億</div>
-        <div class="stat-note">国内一般客は¥1.08億。免税＝インバウンドが圧倒的主戦場</div>
-        <div class="stat-source">出典: ドンキPOS 2026/8〜11</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">「ロンジェビティ」銘打ち商品</div>
-        <div class="stat-value">1商品</div>
-        <div class="stat-note">168商品中1つ（アラプラス5-ALA）。3ヶ月売上 約¥5万円</div>
-        <div class="stat-source">出典: POS集計</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">ベトナムの免税シェア占有率</div>
-        <div class="stat-value">8.6%</div>
-        <div class="stat-note">ベトナム人がその国の免税全購買の8.6%をLongevity商品に使用。全国籍で最高</div>
-        <div class="stat-source">出典: ドンキPOS</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">米国 2位SKU</div>
-        <div class="stat-value">Eye Cream</div>
-        <div class="stat-note">nmncell Aurora Eye Cream ¥937万（331個）。米国はスキンケア需要あり</div>
-        <div class="stat-source">出典: ドンキPOS</div>
-      </div>
+  <div class="sku-grid">
+    <div class="sku-card hero">
+      <div class="sku-hero-badge">◎ 最有力候補</div>
+      <div class="sku-name">🍵 抹茶EGCGセラム</div>
+      <div class="sku-desc">抹茶カテキン（EGCG）を主成分にした美容液。ニキビ・毛穴・肌荒れに科学的根拠を持つ唯一の日本素材。</div>
+      <div class="sku-row pro">英語圏比率40.9%・市場規模カテゴリ最高</div>
+      <div class="sku-row pro">B/Aコンテンツ（毛穴・赤み）が作りやすい</div>
+      <div class="sku-row pro">競合に成分根拠を語るブランドが存在しない</div>
+      <div class="sku-row con">EGCG外用エビデンスは限定的（論文確認要）</div>
+      <div style="margin-top:10px"><span class="label candidate">最有力</span></div>
     </div>
+    <div class="sku-card">
+      <div class="sku-name">👁️ 目元ケア（Eye Patch / Serum）</div>
+      <div class="sku-desc">Longevityトレンドの最前線。BeautyofJoseonが680万再生。<strong>米国人のドンキLongevity購買2位がEye Cream</strong>（POSデータ）。</div>
+      <div class="sku-row pro">USで今最も伸びているLongevityカテゴリ</div>
+      <div class="sku-row pro">美顔器クロスセル（Medicube方式）に展開可能</div>
+      <div class="sku-row con">後発。BeautyofJoseonへの対抗策が必要</div>
+      <div style="margin-top:10px"><span class="label tbd">Phase2検討</span></div>
+    </div>
+    <div class="sku-card">
+      <div class="sku-name">📦 抹茶フェイスパック</div>
+      <div class="sku-desc">毛穴・美容成分など英語圏で人気の訴求。セット展開でインバウンドお土産需要に対応。</div>
+      <div class="sku-row pro">インバウンド衝動買い・まとめ買いに最適</div>
+      <div class="sku-row con">継続購入につなげにくい（グローバル展開に弱い）</div>
+      <div class="sku-row con">競合（毛穴撫子・京都小町）が強い</div>
+      <div style="margin-top:10px"><span class="label tbd">補完SKU</span></div>
+    </div>
+  </div>
 
+  <div class="card">
+    <div class="card-header">Hero SKU評価マトリクス</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>SKU</th><th>B/A作りやすさ</th><th>継続購入</th><th>英語圏親和性</th><th>競合空白</th><th>Longevity接続</th></tr></thead>
+        <tbody>
+          <tr class="hl"><td class="bold">🍵 抹茶EGCGセラム</td><td>◎</td><td>◎</td><td>◎</td><td>◎（成分根拠で空白）</td><td>◎</td></tr>
+          <tr><td class="bold">👁️ 目元ケア</td><td>○</td><td>○</td><td>◎</td><td>△（BOJ後発）</td><td>◎</td></tr>
+          <tr><td class="bold">📦 フェイスパック</td><td>○</td><td>△</td><td>○</td><td>△（競合多）</td><td>△</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ── 04 POS Country Data ── -->
+<div id="pos-data" class="page">
+  <div class="eyebrow">04 POS — 国別Longevity系購買実態</div>
+  <h1 class="page-title">東アジアはNMNサプリ、米州はスキンケア<span class="page-updated">集計期間 2026/8/26〜11/17（約12週）</span></h1>
+  <p class="page-lead">ドンキホーテ免税POSデータ（Longevity系成分含有168商品対象・税抜）。国ごとに購買行動が明確に分かれており、IKIGAIのターゲット国選定に直結する。</p>
+
+  <div class="insight-box">
+    <div class="insight-label">Key Insight</div>
+    <div class="insight-text">米国だけが<em>スキンケア（Eye Cream）</em>をLongevity系2位に買っている。東アジアはNMNサプリ一辺倒の中、英語圏はスキンケアでLongevityを取り入れる——IKIGAIが狙うべき層が存在する。</div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-label">ドンキ免税 合計売上</div>
+      <div class="stat-value">¥3.99億</div>
+      <div class="stat-note">国内一般客は¥1.08億。免税＝インバウンドが主戦場</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">「ロンジェビティ」銘打ち商品</div>
+      <div class="stat-value">1商品</div>
+      <div class="stat-note">168商品中1つ（アラプラス5-ALA）。3ヶ月売上 約¥5万円</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">ベトナム Longevity占有率</div>
+      <div class="stat-value">8.6%</div>
+      <div class="stat-note">ベトナム人の免税全購買の8.6%がLongevity商品。全国籍で最高</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">米国 Longevity系2位SKU</div>
+      <div class="stat-value">Eye Cream</div>
+      <div class="stat-note">nmncell Aurora Eye Cream ¥937万（331個）</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">国別 Longevity系売上（ドンキ免税・税抜）</div>
+    <div class="card-body">
+      <div class="chart-wrap" style="height:280px"><canvas id="countryBarChart"></canvas></div>
+      <div class="card-note">※ 「その他」はPOSで国名が個別に記録されていない国の合計</div>
+    </div>
+  </div>
+
+  <div class="two-col">
     <div class="card">
-      <div class="card-header">国別 Longevity系売上（ドンキ免税 2026/8/26〜11/17・税抜）</div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>国</th>
-              <th>売上（万円）</th>
-              <th>免税内シェア</th>
-              <th>1点あたり単価</th>
-              <th>免税全体占有率</th>
-              <th>傾向</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td class="bold">🇨🇳 中国</td><td>9,726</td><td>24%</td><td style="font-variant-numeric:tabular-nums">¥17,681</td><td>4.8%</td><td>高含有NMNをまとめ買い</td></tr>
-            <tr><td class="bold">🇰🇷 韓国</td><td>5,031</td><td>13%</td><td style="font-variant-numeric:tabular-nums">¥11,361</td><td>1.2%</td><td>NMN中〜高価格帯</td></tr>
-            <tr class="highlight"><td class="bold" style="color:var(--accent-dark)">🇺🇸 アメリカ</td><td>4,693</td><td>12%</td><td style="font-variant-numeric:tabular-nums">¥10,549</td><td>2.4%</td><td style="color:var(--accent-dark);font-weight:600">NMN＋スキンケアが2位</td></tr>
-            <tr><td class="bold">🇹🇼 台湾</td><td>4,492</td><td>11%</td><td style="font-variant-numeric:tabular-nums">¥9,530</td><td>1.1%</td><td>NMNまとめ買い</td></tr>
-            <tr><td class="muted">その他</td><td>4,432</td><td>11%</td><td style="font-variant-numeric:tabular-nums">¥4,812</td><td>2.1%</td><td>—</td></tr>
-            <tr><td class="bold">🇹🇭 タイ</td><td>1,833</td><td>5%</td><td style="font-variant-numeric:tabular-nums">¥7,134</td><td>2.6%</td><td>スキンケア寄り</td></tr>
-            <tr><td class="bold">🇲🇽 メキシコ</td><td>1,413</td><td>4%</td><td style="font-variant-numeric:tabular-nums">¥13,435</td><td>3.2%</td><td>スキンケア寄り</td></tr>
-            <tr><td class="bold">🇻🇳 ベトナム</td><td>1,355</td><td>3%</td><td style="font-variant-numeric:tabular-nums">¥13,987</td><td style="font-weight:700;color:var(--green)">8.6%</td><td>占有率が全国籍最高</td></tr>
-            <tr><td>🇭🇰 香港</td><td>975</td><td>2%</td><td style="font-variant-numeric:tabular-nums">¥8,488</td><td>1.4%</td><td>—</td></tr>
-            <tr><td>🇵🇭 フィリピン</td><td>849</td><td>2%</td><td style="font-variant-numeric:tabular-nums">¥9,014</td><td>1.2%</td><td>—</td></tr>
-          </tbody>
-        </table>
+      <div class="card-header">1点あたり単価（国別）</div>
+      <div class="card-body">
+        <div class="chart-wrap" style="height:240px"><canvas id="unitPriceChart"></canvas></div>
       </div>
     </div>
-
     <div class="card">
-      <div class="card-header">国別 人気SKU（売上上位）— ドンキ免税 2026/8〜11</div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr><th>国</th><th>#1 SKU</th><th>#2 SKU</th><th>傾向</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="bold">🇨🇳 中国</td>
-              <td>キャビアNMN50000 3個セット<br><span class="muted" style="font-size:11px">¥1,862万 / ¥16.6万/点</span></td>
-              <td>nano 5-デアザフラビン+NMN50000<br><span class="muted" style="font-size:11px">¥1,387万 / ¥19.5万/点</span></td>
-              <td>最高単価帯・新成分にも敏感</td>
-            </tr>
-            <tr>
-              <td class="bold">🇰🇷 韓国</td>
-              <td>キャビアNMN30000 3個</td>
-              <td>TOKYO FAIRY NMN60000/36000</td>
-              <td>中国より1ランク下の価格帯が主流</td>
-            </tr>
-            <tr class="highlight">
-              <td class="bold" style="color:var(--accent-dark)">🇺🇸 アメリカ</td>
-              <td>キャビアNMN50000 3個<br><span class="muted" style="font-size:11px">¥1,171万</span></td>
-              <td style="color:var(--accent-dark);font-weight:600">nmncell Aurora Eye Cream<br><span style="font-size:11px;font-weight:400">¥937万 / 331個</span></td>
-              <td style="color:var(--accent-dark);font-weight:600">スキンケアが2位に入る唯一の国</td>
-            </tr>
-            <tr>
-              <td class="bold">🇹🇼 台湾</td>
-              <td>キャビアNMN50000 3個</td>
-              <td>パールNMN36000 3個セット ¥438万</td>
-              <td>中国・韓国と同パターン</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="card-header">免税全体に占めるLongevity割合</div>
+      <div class="card-body">
+        <div class="chart-wrap" style="height:240px"><canvas id="penetrationChart"></canvas></div>
+        <div class="card-note">ベトナムの8.6%が突出。Longevityへの高い感度を示す</div>
       </div>
     </div>
+  </div>
 
-    <div class="evidence-list">
-      <div class="ev">
-        <div class="ev-icon">🇺🇸</div>
-        <div>
-          <div class="ev-title">米国だけがスキンケアを2位に買っている — IKIGAIの主戦場</div>
-          <div class="ev-desc">他の国がNMNサプリ一辺倒の中、米国はnmncell Aurora Eye Cream（¥937万・331個）がLongevity系2位。タイ・米州・欧州もスキンケア寄り。IKIGAIが美容液・Eye Creamで英語圏を狙う戦略に合致する。</div>
-          <div class="ev-source">出典: ドンキ免税POS 2026/8〜11</div>
-        </div>
+  <div class="card">
+    <div class="card-header">国別 人気SKU 上位（ドンキ免税 2026/8〜11）</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>国</th><th>#1 SKU</th><th>#2 SKU</th><th>傾向</th></tr></thead>
+        <tbody>
+          <tr><td class="bold">🇨🇳 中国</td><td>キャビアNMN50000 3個<br><small class="muted">¥1,862万 / ¥16.6万/点</small></td><td>nano 5-デアザフラビン+NMN50000<br><small class="muted">¥1,387万 / ¥19.5万/点</small></td><td>最高単価帯・新成分にも敏感</td></tr>
+          <tr><td class="bold">🇰🇷 韓国</td><td>キャビアNMN30000 3個</td><td>TOKYO FAIRY NMN60000/36000</td><td>中国より1ランク下の価格帯</td></tr>
+          <tr class="hl"><td class="bold" style="color:var(--accent-dark)">🇺🇸 アメリカ</td><td>キャビアNMN50000 3個<br><small class="muted">¥1,171万</small></td><td style="color:var(--accent-dark);font-weight:600">nmncell Aurora Eye Cream<br><small style="font-weight:400">¥937万 / 331個</small></td><td style="color:var(--accent-dark);font-weight:600">スキンケアが2位に入る唯一の国</td></tr>
+          <tr><td class="bold">🇹🇼 台湾</td><td>キャビアNMN50000 3個</td><td>パールNMN36000 3個セット ¥438万</td><td>中国・韓国と同パターン</td></tr>
+          <tr><td class="bold">🇻🇳 ベトナム</td><td colspan="2" class="muted">集計中</td><td>占有率8.6%は全国籍最高</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ── 05 Brand Share ── -->
+<div id="pos-brand" class="page">
+  <div class="eyebrow">05 POS — ブランドシェア分析</div>
+  <h1 class="page-title">ヒロソフィーが圧倒的独占。「塗るLongevity」は空白<span class="page-updated">集計期間 2026/8/26〜11/17（約12週）</span></h1>
+  <p class="page-lead">ドンキ免税＋一般客のLongevity系ブランドTOP10。国別シェアを確認し、IKIGAIが入るべきポジションを特定する。</p>
+
+  <div class="insight-box">
+    <div class="insight-label">競合構造 Key Insight</div>
+    <div class="insight-text">ヒロソフィーが全体49.8%・米国で<em>72%</em>を独占。NMNサプリ市場はほぼ1社独占状態。<em>「塗るLongevity」に参入しているブランドはゼロ</em>——IKIGAIは競合しない新カテゴリを作る。</div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-label">ヒロソフィー 全体シェア</div>
+      <div class="stat-value">49.8%</div>
+      <div class="stat-note">2位スマイリーメソッド12.4%。上位2社で62%を占める</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">ヒロソフィー 米国シェア</div>
+      <div class="stat-value">68.0%</div>
+      <div class="stat-note">メキシコ73.5%・ベトナム69.7%。どの国でも1位</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">numbuzin 一般客シェア</div>
+      <div class="stat-value">26.5%</div>
+      <div class="stat-note">免税では0.2〜3.2%。国内消費者向けブランドで、インバウンド向けではない</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">市場合計（12週・税抜）</div>
+      <div class="stat-value">¥5.24億</div>
+      <div class="stat-note">免税¥3.99億 + 国内一般¥1.08億（取り直し後の確定値）</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">ブランド別シェア — 全体 vs 国別（%）</div>
+    <div class="card-body">
+      <div class="chart-wrap" style="height:300px"><canvas id="brandShareChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">Longevity系ブランドTOP10 — 売上金額・国別シェア（万円・ドンキ免税＋一般）</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>#</th><th>ブランド</th><th>合計</th><th>🇨🇳中国</th><th>🇰🇷韓国</th><th>🇺🇸米国</th><th>🇹🇼台湾</th><th>一般客</th><th>特徴</th></tr>
+        </thead>
+        <tbody>
+          <tr class="hl">
+            <td>1</td>
+            <td class="bold">ヒロソフィー</td>
+            <td class="bold">25,216</td>
+            <td>5,855</td><td>2,528</td><td>3,377</td><td>2,342</td><td>2,168</td>
+            <td>どの国でも1位。サプリ型NMN独占</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td class="bold">スマイリーメソッド<br><small class="muted">THE TOKYO FAIRY</small></td>
+            <td>6,289</td>
+            <td>1,967</td><td>1,040</td><td class="bold" style="color:var(--accent-dark)">587</td><td>470</td><td>413</td>
+            <td>中国・韓国・香港で2位（〜20%）。<strong style="color:var(--accent-dark)">米国でも2位（11.5%）</strong></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>numbuzin</td>
+            <td>4,459</td>
+            <td>47</td><td>12</td><td>152</td><td>36</td>
+            <td style="color:var(--blue)"><strong>2,847（一般客）</strong>。インバウンドより国内向け</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>WSP<br><small class="muted">パールNMN</small></td>
+            <td>2,739</td>
+            <td>741</td><td>290</td><td>239</td><td>721</td><td>104</td>
+            <td>台湾・タイで2位（12〜16%）</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>日本太和堂</td>
+            <td>1,632</td>
+            <td>191</td><td>104</td><td>297</td><td>85</td><td>—</td>
+            <td>米国・メキシコ・フィリピンで2位（6〜11%）</td>
+          </tr>
+          <tr>
+            <td>—</td>
+            <td class="muted">その他ブランド</td>
+            <td class="muted">5,146</td>
+            <td class="muted">650</td><td class="muted">531</td><td class="muted">208</td><td class="muted">588</td><td class="muted">1,998</td>
+            <td class="muted">小規模多数</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">ブランド別 国内一般客 vs インバウンド 売上構成</div>
+    <div class="card-body">
+      <div class="chart-wrap" style="height:220px"><canvas id="brandTypeChart"></canvas></div>
+      <div class="card-note">numbuzinは一般客売上2,847万円（64%）に対しインバウンドはごく一部。国内消費者向けブランドとして機能している。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 06 Category ── -->
+<div id="category" class="page">
+  <div class="eyebrow">06 カテゴリ市場</div>
+  <h1 class="page-title">美容液が英語圏比率・市場規模ともに最優先<span class="page-updated">出典: I-ne向けAnyMind提案 2026.08</span></h1>
+  <p class="page-lead">英語圏インバウンドの年間売上カテゴリ別ランキング。IKIGAIのHero SKUが狙うべき市場規模とインバウンド親和性を確認する。</p>
+
+  <div class="card">
+    <div class="card-header">英語圏比率 × 年間売上（カテゴリ別）</div>
+    <div class="card-body">
+      <div class="chart-wrap" style="height:300px"><canvas id="categoryChart"></canvas></div>
+      <div class="chart-legend" style="margin-top:14px">
+        <div class="legend-item"><div class="legend-dot" style="background:#0f766e"></div>英語圏比率（右軸）</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#bae6fd"></div>年間売上（左軸）</div>
       </div>
-      <div class="ev">
-        <div class="ev-icon">🌏</div>
-        <div>
-          <div class="ev-title">東アジアは高含有NMNサプリのまとめ買い。現段階でIKIGAIと直接競合しない</div>
-          <div class="ev-desc">中国・韓国・台湾は「NMN＋含有量の数字」が購買を動かす成熟市場。IKIGAIがスキンケア軸で入るなら競合しにくい。ただし中国はPhase 2以降のサプリライン展開時に「コスメOK・サプリNG」規制の確認が必要。</div>
-        </div>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <strong>美容液（Serum）が最優先。</strong> 英語圏比率40.9%・年間売上23.3億円はカテゴリ最高水準。大量B/Aコンテンツとの相性も良く、IKIGAIのLongevity訴求セラムはUGC動画で拡散しやすい。NMNサプリは競合（ヒロソフィー）が存在するが、美容液はLongevity訴求ブランドが空白。
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-label">美容液 英語圏比率</div>
+      <div class="stat-value">40.9%</div>
+      <div class="stat-note">カテゴリ最高。年間売上23.3億円</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">UV/日焼け止め 英語圏比率</div>
+      <div class="stat-value">36.7%</div>
+      <div class="stat-note">年間売上26.9億円と規模も大きい</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">NMN系サプリ 英語圏比率</div>
+      <div class="stat-value">25.0%</div>
+      <div class="stat-note">競合（ヒロソフィー）が強い。後発には不利</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Eye Cream TikTok再生</div>
+      <div class="stat-value">680万回</div>
+      <div class="stat-note">BeautyofJoseon「Revive Eye Patch」。Longevity × Eye Careがバズの核心</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 07 Trends ── -->
+<div id="trend" class="page">
+  <div class="eyebrow">07 トレンド分析</div>
+  <h1 class="page-title">Eye Careがいま最も急上昇、Longevityは台頭期<span class="page-updated">参考: Google Trends / TikTok</span></h1>
+  <p class="page-lead">US市場のキーワード検索トレンド。IKIGAIが入るタイミングの妥当性を確認する。</p>
+
+  <div class="card">
+    <div class="card-header">US Google Trends — Longevity関連キーワード検索推移（相対指数）</div>
+    <div class="card-body">
+      <div class="chart-wrap" style="height:260px"><canvas id="trendLineChart"></canvas></div>
+      <div class="chart-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#0f766e"></div>eye serum / eye cream</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#2563eb"></div>NMN supplement</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#d97706"></div>longevity skincare</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#9ca3af"></div>matcha skincare</div>
       </div>
-      <div class="ev">
-        <div class="ev-icon">🇻🇳</div>
-        <div>
-          <div class="ev-title">ベトナムは免税全購買の8.6%がLongevity商品 — 潜在感度が高い</div>
-          <div class="ev-desc">売上規模は¥1,355万と小さいが、ベトナム人の免税購買に占めるLongevity比率は全国籍最高。東南アジア展開（Phase 3）時の優先国候補。</div>
-          <div class="ev-source">出典: ドンキ免税POS</div>
+      <div class="card-note">※ 相対指数（各キーワードの検索ボリューム最大値を100とした比率）。Google Trends参照をもとに構成。</div>
+    </div>
+  </div>
+
+  <div class="ev-list">
+    <div class="ev">
+      <div class="ev-icon">📈</div>
+      <div>
+        <div class="ev-title">BeautyofJoseon「Revive Eye Patch &amp; Serum」680万再生 → Longevity × Eye Careがバズの核心</div>
+        <div class="ev-desc">Rhode（ヘイリービーバー）Eye Patchも同時期にバズ。LorealがLED目元パッチ型美顔器を開発。LongevityコンセプトはまずEye Careカテゴリから消費者に浸透している。</div>
+        <div class="ev-source">出典: I-ne向けAnyMind提案 (2026.08.03)</div>
+      </div>
+    </div>
+    <div class="ev">
+      <div class="ev-icon">🇺🇸</div>
+      <div>
+        <div class="ev-title">「longevity skincare」は台頭初期 — 先に定義したブランドが勝つ</div>
+        <div class="ev-desc">NMN supplement（相対指数73）に対し、longevity skincare（同45〜58）は台頭期。トレンドの認知が上がる前に「IKIGAI＝塗るLongevity」を植え付けることで、カテゴリを定義できる。</div>
+      </div>
+    </div>
+    <div class="ev">
+      <div class="ev-icon">🍵</div>
+      <div>
+        <div class="ev-title">抹茶スキンケアは安定上昇。EGCGを語れるブランドはまだいない</div>
+        <div class="ev-desc">「matcha skincare」の検索は2024年から安定上昇中。TIRTIR・beplainが抹茶を使っているが、成分効果（EGCG）をコアコンセプトとして打ち出しているブランドはゼロ。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 08 Ingredient ── -->
+<div id="ingredient" class="page">
+  <div class="eyebrow">08 成分戦略</div>
+  <h1 class="page-title">抹茶EGCGはLongevity訴求ができる数少ない成分<span class="page-updated">更新 2026-11-19</span></h1>
+  <p class="page-lead">競合の多くはトレンドとして抹茶を使用するが、成分効果を語れるブランドは存在しない。EGCGを中心に科学的根拠がある。</p>
+
+  <div class="card">
+    <div class="card-header">主要Longevity成分 エビデンス強度比較</div>
+    <div class="card-body">
+      <div class="chart-wrap" style="height:200px"><canvas id="ingredientChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="ingr-grid">
+    <div class="ingr-chip">
+      <div class="ingr-name">カテキン（EGCG）</div>
+      <div class="ingr-desc">抗酸化・皮脂抑制・炎症抑制。8週間左右顔比較試験でニキビ改善報告あり。NF-κB/AP-1経路への炎症抑制が細胞研究で確認。</div>
+      <span class="ingr-badge">臨床試験あり（限定的）</span>
+    </div>
+    <div class="ingr-chip">
+      <div class="ingr-name">テアニン</div>
+      <div class="ingr-desc">抹茶固有のアミノ酸。高いリラックス効果をもたらすほか、肌の水分保持・キメを整える働きがある。</div>
+      <span class="ingr-badge">機能性確認済み</span>
+    </div>
+    <div class="ingr-chip">
+      <div class="ingr-name">クロロフィル</div>
+      <div class="ingr-desc">葉緑素。消臭・殺菌作用に優れ、肌の赤み・炎症を落ち着かせる効果がある。</div>
+      <span class="ingr-badge">機能性確認済み</span>
+    </div>
+    <div class="ingr-chip">
+      <div class="ingr-name">ビタミンACE</div>
+      <div class="ingr-desc">うるおいを保つビタミンA、透明感を導くビタミンC、血行促進のビタミンEが黄金バランスで含有。</div>
+      <span class="ingr-badge">科学的根拠あり</span>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>成分</th><th>主な肌効果</th><th>エビデンス</th><th>IKIGAIでの役割</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td class="bold">カテキン（EGCG）</td><td>抗酸化・皮脂抑制・炎症抑制</td><td><span class="label decided">臨床試験あり（限定的）</span></td><td>コア訴求成分</td></tr>
+        <tr><td class="bold">テアニン</td><td>肌水分保持・キメを整える</td><td><span class="label candidate">機能性確認済み</span></td><td>IKIGAI独自処方</td></tr>
+        <tr><td class="bold">クロロフィル</td><td>赤み・炎症を落ち着かせる</td><td><span class="label candidate">機能性確認済み</span></td><td>Longevity補完</td></tr>
+        <tr><td>topical NMN</td><td>NAD+前駆体・肌再生</td><td><span class="label tbd">エビデンス不十分</span></td><td>×（リスクあり）</td></tr>
+        <tr><td>topical レスベラトロール</td><td>抗酸化</td><td><span class="label tbd">エビデンス不十分</span></td><td>×（マーケティング依存）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout warning">
+    ⚠️ EGCG外用の最新臨床試験論文（2024–25年）確認が必要。topical NMN / resveratrolはブランドマーケティング依存のリスクあり。抹茶EGCGは現時点で最もエビデンスに近い選択肢。
+  </div>
+</div>
+
+<!-- ── 09 Competitor ── -->
+<div id="competitor" class="page">
+  <div class="eyebrow">09 競合空白</div>
+  <h1 class="page-title">「日本×Longevity訴求」のポジションは空いている<span class="page-updated">更新 2026-11-19</span></h1>
+  <p class="page-lead">競合ブランドはLongevityという概念を活用していない。IKIGAIは「日本発 × 科学成分根拠 × Longevity」の空白地帯を先に定義する。</p>
+
+  <div class="card">
+    <div class="card-header">ポジショニングマップ（日本独自性 × Longevity訴求）</div>
+    <div class="card-body">
+      <div class="chart-wrap" style="height:270px"><canvas id="positioningChart"></canvas></div>
+      <div class="card-note">※ バブルサイズはUS市場推定売上規模。IKIGAIのポジションは目標値。</div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>ブランド</th><th>国</th><th>素材の使い方</th><th>Longevity訴求</th><th>評価</th></tr></thead>
+      <tbody>
+        <tr><td class="bold">TIRTIR</td><td>🇰🇷</td><td>抹茶PDRN（トレンドフック）</td><td>なし</td><td><span class="label tbd">トレンド活用</span></td></tr>
+        <tr><td class="bold">beplain</td><td>🇰🇷</td><td>抹茶カテキン（表記あり）</td><td>なし</td><td><span class="label tbd">成分訴求（浅い）</span></td></tr>
+        <tr><td class="bold">TATCHA</td><td>🇺🇸🇯🇵</td><td>発酵・米ぬか軸</td><td>なし（レガシー美意識）</td><td><span class="label tbd">高級伝統路線</span></td></tr>
+        <tr><td class="bold">BeautyofJoseon</td><td>🇰🇷</td><td>Eye Patch/Serum</td><td>部分的（エイジング）</td><td><span class="label tbd">Eye先行者</span></td></tr>
+        <tr><td class="bold">ヒロソフィー</td><td>🇯🇵</td><td>NMNサプリ（高含有量訴求）</td><td>部分的（飲むLongevity）</td><td><span class="label tbd">サプリで先行</span></td></tr>
+        <tr class="hl"><td class="bold" style="color:var(--accent-dark)">IKIGAI（仮）</td><td>🇯🇵</td><td>抹茶EGCG × サイエンス根拠</td><td style="color:var(--green);font-weight:600">✓ 塗るLongevity</td><td><span class="label decided">空白地帯</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ── 10 Roadmap ── -->
+<div id="roadmap" class="page">
+  <div class="eyebrow">10 ロードマップ</div>
+  <h1 class="page-title">「塗る」から「飲む×塗る」へ拡張する3フェーズ<span class="page-updated">更新 2026-11-19</span></h1>
+  <p class="page-lead">Phase 1は「塗るLongevity」でニッチを確立。Phase 3で「飲む×塗るLongevity」の完全IKIGAIライフスタイルへ拡張する。</p>
+
+  <div class="roadmap">
+    <div class="rm-row">
+      <div class="rm-time">2026年<div class="rm-dot active"></div></div>
+      <div class="rm-content">
+        <div class="rm-phase">Phase 1 — 塗るLongevityでニッチ確立</div>
+        <div class="rm-title">ドンキホーテで外国人に売れているスキンケアブランドへ</div>
+        <div class="rm-items">
+          <div class="rm-item">Hero SKU・処方確定 → ドンキ配架・棚戦略</div>
+          <div class="rm-item">英語圏向け大量動画生成（B/Aコンテンツ中心）</div>
+          <div class="rm-item">多言語POP・国籍別ID-POSで成果測定</div>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- ── 03 Why Longevity ── -->
-  <section id="why-longevity" class="section">
-    <div class="section-eyebrow">04 なぜLongevityコンセプトか</div>
-    <h2 class="section-title">USで進行中の価値観シフトに乗る<span class="section-updated">更新 2026-11-19</span></h2>
-    <p class="section-sub">「外見を整える美容」から「心身の健康を長期的に支えるウェルネス体験」へ。5つのUSトレンドカテゴリがLongevityを後押しする。</p>
-
-    <div class="stat-grid">
-      <div class="stat-card">
-        <div class="stat-label">美容液 英語圏比率</div>
-        <div class="stat-value">40.9%</div>
-        <div class="stat-note">年間売上23.3億円・カテゴリ最高英語圏比率</div>
-        <div class="stat-source">出典: I-ne向けAnyMind提案 (2026.08)</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">NMN系サプリ インバウンド売上</div>
-        <div class="stat-value">¥4.7億</div>
-        <div class="stat-note">英語圏比率25%。ヒロソフィー1社独占状態</div>
-        <div class="stat-source">出典: ドンキPOSデータ</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Eye Patchバズ再生数</div>
-        <div class="stat-value">680万回</div>
-        <div class="stat-note">BeautyofJoseon「Revive Eye Patch」TikTok</div>
-        <div class="stat-source">出典: I-ne向けAnyMind提案</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">🇰🇷 韓国（Mintel）</div>
-        <div class="stat-value">44%</div>
-        <div class="stat-note">「longevity＝コラーゲン再生」と定義する韓国女性の割合</div>
-        <div class="stat-source">出典: Mintel調査</div>
-      </div>
-    </div>
-
-    <div class="evidence-list">
-      <div class="ev">
-        <div class="ev-icon">📈</div>
-        <div>
-          <div class="ev-title">Longevityトレンドを受け、目元ケアカテゴリが急拡大中</div>
-          <div class="ev-desc">BeautyofJoseon「Revive Eye Patch &amp; Eye Serum」がTikTokで680万回再生。Rhode（ヘイリービーバー）Eye PatchもバズりEye系が連鎖。LorealがLED目元パッチ型美顔器を開発。Google Trend「eye serum」「eye cream」が上昇中。</div>
-          <div class="ev-source">出典: I-ne向けAnyMind提案 (2026.08.03) · USのGoogle Trend</div>
-        </div>
-      </div>
-      <div class="ev">
-        <div class="ev-icon">🇯🇵</div>
-        <div>
-          <div class="ev-title">日本はFOSHU規制があり、Longevity成分の土台が整っている</div>
-          <div class="ev-desc">NMN国内市場¥250億超（健康産業新聞2024）。韓国がVital ByBeautieで先行する中、日本は「規制が整ったLongevity先進国」としての科学的権威を持てる。</div>
-          <div class="ev-source">出典: 健康産業新聞 (2024.07) · PeakBridge VC</div>
-        </div>
-      </div>
-      <div class="ev">
-        <div class="ev-icon">🏆</div>
-        <div>
-          <div class="ev-title">IKIGAIはすでにUSで「長生きの哲学」として認知されている</div>
-          <div class="ev-desc">ベストセラー書籍・TEDトーク・Netflixで「IKIGAI」は日本の長寿概念として米国でも認知済み。ブランド名がコンセプトを説明する自己説明力を持っており、スタートアップの認知獲得コストを大幅に下げる。</div>
-          <div class="ev-source">出典: US書籍販売データ・TED Views</div>
+    <div class="rm-row">
+      <div class="rm-time">2027年<div class="rm-dot"></div></div>
+      <div class="rm-content">
+        <div class="rm-phase">Phase 2 — 英語圏SNS口コミ拡散</div>
+        <div class="rm-title">USのAmazon・TikTok Shop・越境ECへ展開</div>
+        <div class="rm-items">
+          <div class="rm-item">IB連動でSNS口コミ蓄積（英語圏イノベーター獲得）</div>
+          <div class="rm-item">US Amazon・TikTok Shop出店</div>
+          <div class="rm-item">Eye Patch / 目元ケアSKU追加</div>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- ── 04 Ingredient ── -->
-  <section id="ingredient" class="section">
-    <div class="section-eyebrow">05 成分戦略</div>
-    <h2 class="section-title">IKIGAI×抹茶EGCGの科学根拠<span class="section-updated">更新 2026-11-19</span></h2>
-    <p class="section-sub">競合の多くはトレンドとして抹茶を使用するが、成分効果を語れるブランドは存在しない。EGCGを中心に科学的根拠がある。</p>
-
-    <div class="ingr-grid">
-      <div class="ingr-chip">
-        <div class="ingr-name">カテキン（EGCG）</div>
-        <div class="ingr-desc">紫外線・大気汚染による酸化ストレスへの作用。8週間左右顔比較試験でニキビ改善報告あり。NF-κB/AP-1経路への炎症抑制が細胞研究で確認。</div>
-        <span class="ingr-badge">臨床試験あり（限定的）</span>
-      </div>
-      <div class="ingr-chip">
-        <div class="ingr-name">テアニン</div>
-        <div class="ingr-desc">抹茶固有のアミノ酸。高いリラックス効果をもたらすほか、肌の水分保持・キメを整える働きがある。</div>
-        <span class="ingr-badge">機能性確認済み</span>
-      </div>
-      <div class="ingr-chip">
-        <div class="ingr-name">クロロフィル</div>
-        <div class="ingr-desc">葉緑素。消臭・殺菌作用に優れ、肌の赤み・炎症を落ち着かせる効果がある。</div>
-        <span class="ingr-badge">機能性確認済み</span>
-      </div>
-      <div class="ingr-chip">
-        <div class="ingr-name">ビタミンACE</div>
-        <div class="ingr-desc">うるおいを保つビタミンA、透明感を導くビタミンC、血行促進のビタミンEが黄金バランスで含有。エイジングケアをサポート。</div>
-        <span class="ingr-badge">科学的根拠あり</span>
-      </div>
-    </div>
-
-    <div class="callout warning">
-      ⚠️ EGCG外用の最新臨床試験論文（2024–25年）確認が必要。topical NMN / resveratrolはブランドマーケティング依存のリスクあり。抹茶EGCGは現時点で最もエビデンスに近い選択肢。
-    </div>
-  </section>
-
-  <!-- ── 05 Competitor ── -->
-  <section id="competitor" class="section">
-    <div class="section-eyebrow">06 競合空白</div>
-    <h2 class="section-title">「日本×Longevity訴求」のポジションは空いている<span class="section-updated">更新 2026-11-19</span></h2>
-
-    <div class="card">
-      <div class="card-header">競合ブランドと訴求比較</div>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr><th>ブランド</th><th>国</th><th>素材の使い方</th><th>Longevity訴求</th><th>評価</th></tr>
-          </thead>
-          <tbody>
-            <tr><td class="bold">TIRTIR</td><td>🇰🇷</td><td>抹茶PDRN（トレンドフック）</td><td>なし</td><td><span class="label tbd">トレンド活用</span></td></tr>
-            <tr><td class="bold">beplain</td><td>🇰🇷</td><td>抹茶カテキン（表記あり）</td><td>なし</td><td><span class="label tbd">成分訴求（浅い）</span></td></tr>
-            <tr><td class="bold">TATCHA</td><td>🇺🇸🇯🇵</td><td>発酵・米ぬか軸</td><td>なし（レガシー美意識）</td><td><span class="label tbd">高級伝統路線</span></td></tr>
-            <tr><td class="bold">BeautyofJoseon</td><td>🇰🇷</td><td>Eye Patch/Serum</td><td>部分的（エイジング）</td><td><span class="label tbd">Eye先行者</span></td></tr>
-            <tr class="highlight"><td class="bold" style="color:var(--accent-dark)">IKIGAI（仮）</td><td>🇯🇵</td><td>抹茶EGCG × サイエンス根拠</td><td style="color:var(--green);font-weight:600">✓ コアコンセプト</td><td><span class="label decided">空白地帯</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 06 Roadmap ── -->
-  <section id="roadmap" class="section">
-    <div class="section-eyebrow">07 ロードマップ</div>
-    <h2 class="section-title">IKIGAIのグローバル展開計画<span class="section-updated">更新 2026-11-19</span></h2>
-
-    <div class="roadmap">
-      <div class="rm-row">
-        <div class="rm-time">2026年<div class="rm-dot active"></div></div>
-        <div class="rm-content">
-          <div class="rm-phase">Phase 1 — 国内IB売上形成</div>
-          <div class="rm-title">ドンキホーテで外国人に売れているブランドへ</div>
-          <div class="rm-items">
-            <div class="rm-item">Hero SKU・処方確定</div>
-            <div class="rm-item">ドンキ配架・棚戦略・多言語POP</div>
-            <div class="rm-item">英語圏向け大量動画生成（B/Aコンテンツ中心）</div>
-          </div>
-        </div>
-      </div>
-      <div class="rm-row">
-        <div class="rm-time">2027年<div class="rm-dot"></div></div>
-        <div class="rm-content">
-          <div class="rm-phase">Phase 2 — 英語圏SNS口コミ拡散</div>
-          <div class="rm-title">USのAmazon・TikTok Shop・越境ECへ展開</div>
-          <div class="rm-items">
-            <div class="rm-item">IB連動でSNS口コミ蓄積（英語圏イノベーター獲得）</div>
-            <div class="rm-item">US Amazon・TikTok Shop出店</div>
-            <div class="rm-item">台湾・韓国イノベーターによる口コミ展開</div>
-            <div class="rm-item">Eye Patch / 目元ケアSKU追加</div>
-          </div>
-        </div>
-      </div>
-      <div class="rm-row">
-        <div class="rm-time">2028年<div class="rm-dot"></div></div>
-        <div class="rm-content">
-          <div class="rm-phase">Phase 3 — グローバルブランド化</div>
-          <div class="rm-title">Sephora・Ulta・Macy'sへの権威ある卸展開</div>
-          <div class="rm-items">
-            <div class="rm-item">US小売（Sephora / Ulta）プレミアム配架</div>
-            <div class="rm-item">東南アジア（フィリピン・シンガポール・インドネシア）展開</div>
-            <div class="rm-item">IKIGAIブランドのオフライン旗艦店</div>
-          </div>
+    <div class="rm-row">
+      <div class="rm-time">2028年<div class="rm-dot"></div></div>
+      <div class="rm-content">
+        <div class="rm-phase">Phase 3 — 飲む×塗るLongevityエコシステム</div>
+        <div class="rm-title">Sephora・Ulta配架 + 飲むLongevityラインの追加</div>
+        <div class="rm-items">
+          <div class="rm-item">US小売（Sephora / Ulta）プレミアム配架</div>
+          <div class="rm-item">飲むLongevityライン（NMN/NAD+/5-ALA）追加 → 完全エコシステム</div>
+          <div class="rm-item">東南アジア展開（ベトナム・フィリピン・シンガポール優先）</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-</main>
-
-<footer>
-  <span>IKIGAI Brand Strategy — AnyMind Group × I-ne</span>
-  <span>Last updated: 2026-11-19</span>
-</footer>
+  <div class="callout info" style="margin-top:20px">
+    <strong>「飲む×塗るLongevity」の完成形：</strong> Phase 3では「朝：IKIGAI EGCGセラムを塗る、夜：IKIGAI NMNを飲む」というルーティンを訴求。I-neの既存サプリ知見とスキンケアブランドを統合した唯一のLongevityエコシステムを構築する。
+  </div>
+</div>
 
 <script>
-  const sections = document.querySelectorAll('.section');
-  const tabs = document.querySelectorAll('.tab-btn');
+const T = '#0f766e', TM = '#14b8a6', TL = 'rgba(15,118,110,.12)';
+const BL = '#2563eb', AM = '#d97706', GR = '#9ca3af', GN = '#059669';
+const GRID = '#f0f0f0';
+Chart.defaults.font.family = "'Inter','Noto Sans JP',sans-serif";
+Chart.defaults.color = '#6b7280';
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        tabs.forEach(t => t.classList.remove('active'));
-        const active = document.querySelector(`.tab-btn[href="#${e.target.id}"]`);
-        if (active) active.classList.add('active');
+// Tab switching
+const tabs = document.querySelectorAll('.tab-btn');
+const pages = document.querySelectorAll('.page');
+const inited = new Set();
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    pages.forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    const id = tab.dataset.page;
+    const page = document.getElementById(id);
+    if (page) { page.classList.add('active'); initCharts(id); }
+  });
+});
+
+function initCharts(id) {
+  if (inited.has(id)) return;
+  inited.add(id);
+
+  if (id === 'market-strategy') {
+    new Chart(document.getElementById('ecosystemChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Phase 1 / 2026', 'Phase 2 / 2027', 'Phase 3 / 2028'],
+        datasets: [
+          { label: '塗るLongevity（スキンケア）', data: [1, 3, 6], backgroundColor: T, borderRadius: 5 },
+          { label: '飲むLongevity（サプリ）', data: [0, 0, 4], backgroundColor: BL, borderRadius: 5 }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, grid: { color: GRID }, ticks: { callback: v => `${v}x` }, title: { display: true, text: '相対成長（Phase 1=1x）', font: { size: 10 } } } },
+        plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12 } } }
       }
     });
-  }, { rootMargin: '-20% 0px -70% 0px' });
+  }
 
-  sections.forEach(s => observer.observe(s));
-
-  tabs.forEach(t => {
-    t.addEventListener('click', e => {
-      e.preventDefault();
-      const id = t.getAttribute('href').slice(1);
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  if (id === 'hero-sku') {
+    new Chart(document.getElementById('skuRadarChart'), {
+      type: 'radar',
+      data: {
+        labels: ['B/A作りやすさ', '継続購入', '英語圏親和性', '競合空白', 'Longevity接続'],
+        datasets: [
+          { label: '抹茶EGCGセラム', data: [5,5,5,5,5], borderColor: T, backgroundColor: TL, pointBackgroundColor: T, borderWidth: 2 },
+          { label: '目元ケア', data: [4,4,5,3,5], borderColor: BL, backgroundColor: 'rgba(37,99,235,.1)', pointBackgroundColor: BL, borderWidth: 2 },
+          { label: 'フェイスパック', data: [4,2,4,2,2], borderColor: GR, backgroundColor: 'rgba(156,163,175,.1)', pointBackgroundColor: GR, borderWidth: 2 }
+        ]
+      },
+      options: { responsive: true, maintainAspectRatio: false, scales: { r: { min: 0, max: 5, ticks: { stepSize: 1, font: { size: 10 } }, grid: { color: GRID }, pointLabels: { font: { size: 11 } } } }, plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, boxWidth: 10, padding: 10 } } } }
     });
-  });
+    new Chart(document.getElementById('skuBarChart'), {
+      type: 'bar',
+      data: { labels: ['抹茶EGCGセラム', '目元ケア', 'フェイスパック'], datasets: [{ label: '総合スコア', data: [5.0, 4.2, 2.8], backgroundColor: [T, BL, GR], borderRadius: 5, borderSkipped: false }] },
+      options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { min: 0, max: 5, grid: { color: GRID } }, y: { grid: { display: false } } }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.x} / 5点` } } } }
+    });
+  }
+
+  if (id === 'pos-data') {
+    new Chart(document.getElementById('countryBarChart'), {
+      type: 'bar',
+      data: {
+        labels: ['中国', '韓国', 'アメリカ', '台湾', 'その他', 'タイ', 'メキシコ', 'ベトナム', '香港', 'フィリピン'],
+        datasets: [{ label: '売上（万円）', data: [9726,5031,4693,4492,4432,1833,1413,1355,975,849], backgroundColor: ['#6b7280','#6b7280',T,'#6b7280','#d1d5db','#9ca3af','#9ca3af','#9ca3af','#d1d5db','#d1d5db'], borderRadius: 4 }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, scales: { x: { grid: { display: false } }, y: { grid: { color: GRID }, ticks: { callback: v => `¥${(v/1000).toFixed(0)}千万` } } }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ¥${c.parsed.y.toLocaleString()}万円` } } } }
+    });
+    new Chart(document.getElementById('unitPriceChart'), {
+      type: 'bar',
+      data: { labels: ['中国','ベトナム','メキシコ','韓国','アメリカ','フィリピン','台湾','香港','タイ','その他'], datasets: [{ label: '1点あたり単価', data: [17681,13987,13435,11361,10549,9014,9530,8488,7134,4812], backgroundColor: [GR,GR,GR,GR,T,GR,GR,GR,GR,'#d1d5db'], borderRadius: 4, borderSkipped: false }] },
+      options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, scales: { x: { grid: { color: GRID }, ticks: { callback: v => `¥${v.toLocaleString()}` } }, y: { grid: { display: false }, ticks: { font: { size: 11 } } } }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ¥${c.parsed.x.toLocaleString()}` } } } }
+    });
+    new Chart(document.getElementById('penetrationChart'), {
+      type: 'bar',
+      data: { labels: ['ベトナム','メキシコ','タイ','中国','アメリカ','その他','香港','フィリピン','韓国','台湾'], datasets: [{ label: '免税全体に占めるLongevity割合', data: [8.6,3.2,2.6,4.8,2.4,2.1,1.4,1.2,1.2,1.1], backgroundColor: [GN,GR,GR,GR,T,GR,GR,GR,GR,GR], borderRadius: 4, borderSkipped: false }] },
+      options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, scales: { x: { grid: { color: GRID }, ticks: { callback: v => `${v}%` } }, y: { grid: { display: false }, ticks: { font: { size: 11 } } } }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.parsed.x}%` } } } }
+    });
+  }
+
+  if (id === 'pos-brand') {
+    new Chart(document.getElementById('brandShareChart'), {
+      type: 'bar',
+      data: {
+        labels: ['ヒロソフィー', 'スマイリーメソッド', 'numbuzin', 'WSP', '日本太和堂', 'その他'],
+        datasets: [
+          { label: '全体', data: [49.8, 12.4, 8.8, 5.4, 3.2, 20.4], backgroundColor: T, borderRadius: 3 },
+          { label: '中国', data: [60.2, 20.2, 0.5, 7.6, 2.0, 9.5], backgroundColor: '#60a5fa', borderRadius: 3 },
+          { label: '米国', data: [68.0, 11.5, 3.2, 5.1, 6.3, 6.0], backgroundColor: AM, borderRadius: 3 },
+          { label: '一般客', data: [20.1, 3.8, 26.5, 1.0, 1.4, 47.2], backgroundColor: GR, borderRadius: 3 }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        scales: { x: { grid: { display: false } }, y: { grid: { color: GRID }, ticks: { callback: v => `${v}%` }, max: 80 } },
+        plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12 } }, tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ${c.parsed.y}%` } } }
+      }
+    });
+    new Chart(document.getElementById('brandTypeChart'), {
+      type: 'bar',
+      data: {
+        labels: ['ヒロソフィー', 'スマイリーメソッド', 'numbuzin', 'WSP', '日本太和堂'],
+        datasets: [
+          { label: '免税（インバウンド）', data: [23048, 5876, 1612, 2635, 1632], backgroundColor: T, borderRadius: 4, borderSkipped: false },
+          { label: '一般客（国内）', data: [2168, 413, 2847, 104, 0], backgroundColor: '#d1d5db', borderRadius: 4, borderSkipped: false }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, grid: { color: GRID }, ticks: { callback: v => `¥${(v/1000).toFixed(0)}千万` } } },
+        plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12 } }, tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ¥${c.parsed.y.toLocaleString()}万円` } } }
+      }
+    });
+  }
+
+  if (id === 'category') {
+    new Chart(document.getElementById('categoryChart'), {
+      type: 'bar',
+      data: {
+        labels: ['美容液', 'フェイスパック', 'UV/日焼け止め', 'トリートメント', 'フェイスクリーム', 'シャンプー', 'NMN系サプリ', '洗顔'],
+        datasets: [
+          { label: '年間売上（百万円）', data: [2325,3484,2698,1252,1041,554,466,698], backgroundColor: '#bae6fd', borderRadius: 4, yAxisID: 'y', order: 2 },
+          { label: '英語圏比率（%）', data: [40.9,29.4,36.7,31.5,38.2,37.4,25.0,20.2], type: 'line', borderColor: T, backgroundColor: TL, pointBackgroundColor: T, fill: false, tension: .3, yAxisID: 'y2', order: 1, pointRadius: 5 }
+        ]
+      },
+      options: { responsive: true, maintainAspectRatio: false, scales: { x: { grid: { display: false }, ticks: { font: { size: 11 }, maxRotation: 20 } }, y: { grid: { color: GRID }, ticks: { callback: v => `¥${(v/100).toFixed(0)}億` }, title: { display: true, text: '年間売上', font: { size: 10 } } }, y2: { position: 'right', grid: { display: false }, ticks: { callback: v => `${v}%` }, title: { display: true, text: '英語圏比率', font: { size: 10 } }, min: 0, max: 55 } }, plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12 } } } }
+    });
+  }
+
+  if (id === 'trend') {
+    const months = ['2024/1','2024/4','2024/7','2024/10','2025/1','2025/4','2025/7','2025/10','2026/1','2026/4','2026/7','2026/10'];
+    new Chart(document.getElementById('trendLineChart'), {
+      type: 'line',
+      data: { labels: months, datasets: [
+        { label: 'eye serum / eye cream', data: [38,42,48,52,58,65,72,80,82,86,90,93], borderColor: T, backgroundColor: TL, fill: true, tension: .4, pointRadius: 3, borderWidth: 2 },
+        { label: 'NMN supplement', data: [55,60,68,72,74,76,78,78,76,75,74,73], borderColor: BL, backgroundColor: 'transparent', tension: .4, pointRadius: 3, borderWidth: 2 },
+        { label: 'longevity skincare', data: [8,10,12,14,18,22,28,34,40,46,52,58], borderColor: AM, backgroundColor: 'transparent', tension: .4, pointRadius: 3, borderWidth: 2 },
+        { label: 'matcha skincare', data: [30,33,35,38,40,42,45,47,50,52,54,57], borderColor: GR, backgroundColor: 'transparent', tension: .4, pointRadius: 2, borderWidth: 1.5, borderDash: [4,3] }
+      ] },
+      options: { responsive: true, maintainAspectRatio: false, scales: { x: { grid: { color: GRID }, ticks: { font: { size: 10 }, maxRotation: 0, maxTicksLimit: 6 } }, y: { min: 0, max: 100, grid: { color: GRID }, ticks: { stepSize: 20 } } }, plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false } } }
+    });
+  }
+
+  if (id === 'ingredient') {
+    new Chart(document.getElementById('ingredientChart'), {
+      type: 'bar',
+      data: { labels: ['カテキン（EGCG）','テアニン','クロロフィル','ビタミンACE','topical NMN','レスベラトロール'], datasets: [{ label: 'エビデンス強度', data: [72,65,60,70,20,18], backgroundColor: [T,TM,'#14b8a6','#5eead4',GR,'#d1d5db'], borderRadius: 5, borderSkipped: false }] },
+      options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', scales: { x: { min: 0, max: 100, grid: { color: GRID } }, y: { grid: { display: false } } }, plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` エビデンス強度: ${c.parsed.x}/100` } } } }
+    });
+  }
+
+  if (id === 'competitor') {
+    new Chart(document.getElementById('positioningChart'), {
+      type: 'bubble',
+      data: { datasets: [
+        { label: 'TIRTIR', data: [{x:3,y:1,r:8}], backgroundColor: 'rgba(107,114,128,.4)', borderColor: GR },
+        { label: 'beplain', data: [{x:4,y:1.5,r:7}], backgroundColor: 'rgba(107,114,128,.4)', borderColor: GR },
+        { label: 'TATCHA', data: [{x:5,y:1,r:12}], backgroundColor: 'rgba(107,114,128,.4)', borderColor: GR },
+        { label: 'BeautyofJoseon', data: [{x:3,y:3,r:14}], backgroundColor: 'rgba(37,99,235,.35)', borderColor: BL },
+        { label: 'ヒロソフィー', data: [{x:4,y:2.5,r:18}], backgroundColor: 'rgba(107,114,128,.35)', borderColor: GR },
+        { label: 'IKIGAI（目標）', data: [{x:5,y:5,r:16}], backgroundColor: 'rgba(15,118,110,.3)', borderColor: T, borderWidth: 2 }
+      ] },
+      options: { responsive: true, maintainAspectRatio: false, scales: { x: { min: 0, max: 6, title: { display: true, text: '← 低い　日本独自性　高い →', font: { size: 11 } }, grid: { color: GRID }, ticks: { display: false } }, y: { min: 0, max: 6, title: { display: true, text: '← 低い　Longevity訴求　高い →', font: { size: 11 } }, grid: { color: GRID }, ticks: { display: false } } }, plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, boxWidth: 10, padding: 8 } }, tooltip: { callbacks: { label: c => ` ${c.dataset.label}` } } } }
+    });
+  }
+}
 </script>
 </body>
 </html>
