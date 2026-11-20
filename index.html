@@ -186,6 +186,34 @@ small.muted { color: var(--fg-muted); font-size: 11px; }
   .stat-grid { grid-template-columns: repeat(2, 1fr); }
   .longevity-pair { gap: 8px; }
 }
+
+/* Innovator chart */
+.inno-grid { display: grid; grid-template-columns: 1fr 1.5fr 2fr 2fr 1.2fr; gap: 10px; margin-bottom: 20px; }
+@media (max-width: 700px) { .inno-grid { grid-template-columns: 1fr 1fr; } }
+.inno-col-label { font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+.inno-col-pct { font-size: 20px; font-weight: 700; line-height: 1; }
+.inno-col-name { font-size: 11px; color: var(--fg-muted); margin-bottom: 8px; }
+.z1 .inno-col-label, .z1 .inno-col-pct { color: var(--accent); }
+.z2 .inno-col-label, .z2 .inno-col-pct { color: #0369a1; }
+.z3 .inno-col-label, .z3 .inno-col-pct { color: #d97706; }
+.z4 .inno-col-label, .z4 .inno-col-pct, .z5 .inno-col-label, .z5 .inno-col-pct { color: var(--fg-subtle); }
+.inno-bar { height: 3px; border-radius: 2px; margin: 5px 0 10px; }
+.z1 .inno-bar { background: var(--accent); }
+.z2 .inno-bar { background: #0369a1; }
+.z3 .inno-bar { background: #d97706; }
+.z4 .inno-bar, .z5 .inno-bar { background: var(--fg-subtle); opacity: .4; }
+.inno-cards { display: flex; flex-direction: column; gap: 5px; }
+.inno-card { display: block; padding: 8px 10px; border: 1px solid var(--border); border-radius: 7px; text-decoration: none; color: var(--fg); background: var(--bg); transition: border-color .15s; }
+.inno-card:hover { border-color: var(--accent); }
+.inno-card.target { border-left: 3px solid var(--accent); }
+.inno-card-name { font-size: 12px; font-weight: 700; line-height: 1.3; margin-bottom: 2px; }
+.inno-card-role { font-size: 10px; color: var(--fg-muted); line-height: 1.4; }
+.inno-plat { font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 3px; margin-top: 4px; display: inline-block; }
+.plat-yt { background: #fee2e2; color: #991b1b; }
+.plat-tt { background: #fce7f3; color: #9d174d; }
+.plat-ig { background: #faf5ff; color: #6b21a8; }
+.plat-web { background: var(--bg-surface); color: var(--fg-muted); border: 1px solid var(--border); }
+.plat-rd { background: #fff7ed; color: #9a3412; }
 </style>
 </head>
 <body>
@@ -216,6 +244,7 @@ small.muted { color: var(--fg-muted); font-size: 11px; }
     <button class="tab-btn" data-page="category">カテゴリ市場</button>
     <button class="tab-btn" data-page="trend">トレンド</button>
     <button class="tab-btn" data-page="sns">TikTok分析</button>
+    <button class="tab-btn" data-page="innovator">イノベーター</button>
     <button class="tab-btn" data-page="ingredient">成分戦略</button>
     <button class="tab-btn" data-page="competitor">競合空白</button>
     <button class="tab-btn" data-page="roadmap">ロードマップ</button>
@@ -816,7 +845,214 @@ small.muted { color: var(--fg-muted); font-size: 11px; }
   </div>
 </div>
 
-<!-- ── 09 Ingredient ── -->
+<!-- ── 09 Innovator Theory ── -->
+<div id="innovator" class="page">
+  <div class="eyebrow">09 イノベーター分析</div>
+  <h1 class="page-title">US美容イノベーターマップ — IKIGAIはどこから始めるか<span class="page-updated">Rogers' Diffusion of Innovation</span></h1>
+  <p class="page-lead">イノベーター・アーリーアダプター層を起点に「成分と科学」で認知を獲得し、アーリーマジョリティ（Sephora棚入り）へ波及させる。各カードはアカウント・サイトへのリンク。</p>
+
+  <div class="card" style="overflow:hidden;padding:0;margin-bottom:16px;">
+    <svg viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto;">
+      <defs>
+        <clipPath id="bc">
+          <path d="M0,120 C30,120 60,90 100,50 C130,20 170,2 220,1 C290,0 360,0 400,0 C440,0 510,0 580,1 C630,2 670,20 700,50 C740,90 770,120 800,120 Z"/>
+        </clipPath>
+      </defs>
+      <rect x="0"   y="0" width="80"  height="120" fill="#0f766e" clip-path="url(#bc)"/>
+      <rect x="80"  y="0" width="150" height="120" fill="#0369a1" clip-path="url(#bc)"/>
+      <rect x="230" y="0" width="200" height="120" fill="#d97706" clip-path="url(#bc)"/>
+      <rect x="430" y="0" width="200" height="120" fill="#94a3b8" clip-path="url(#bc)"/>
+      <rect x="630" y="0" width="170" height="120" fill="#cbd5e1" clip-path="url(#bc)"/>
+      <path d="M0,120 C30,120 60,90 100,50 C130,20 170,2 220,1 C290,0 360,0 400,0 C440,0 510,0 580,1 C630,2 670,20 700,50 C740,90 770,120 800,120" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+      <line x1="80"  y1="0" x2="80"  y2="120" stroke="white" stroke-width="1" stroke-opacity="0.4"/>
+      <line x1="230" y1="0" x2="230" y2="120" stroke="white" stroke-width="1" stroke-opacity="0.4"/>
+      <line x1="430" y1="0" x2="430" y2="120" stroke="white" stroke-width="1" stroke-opacity="0.4"/>
+      <line x1="630" y1="0" x2="630" y2="120" stroke="white" stroke-width="1" stroke-opacity="0.4"/>
+      <rect x="2" y="3" width="420" height="18" fill="rgba(255,255,255,0.18)" rx="3"/>
+      <text x="213" y="16" fill="white" font-size="10" font-weight="700" text-anchor="middle" font-family="Arial">← IKIGAI参入フォーカスゾーン</text>
+      <text x="40"  y="108" fill="white" font-size="10" font-weight="700" text-anchor="middle" font-family="Arial">2.5%</text>
+      <text x="155" y="108" fill="white" font-size="10" font-weight="700" text-anchor="middle" font-family="Arial">13.5%</text>
+      <text x="330" y="108" fill="white" font-size="10" font-weight="700" text-anchor="middle" font-family="Arial">34%</text>
+      <text x="530" y="108" fill="white" font-size="10" font-weight="700" text-anchor="middle" font-family="Arial">34%</text>
+      <text x="715" y="108" fill="white" font-size="10" font-weight="700" text-anchor="middle" font-family="Arial">16%</text>
+    </svg>
+  </div>
+
+  <div class="inno-grid">
+
+    <div class="z1">
+      <div class="inno-col-label">イノベーター</div>
+      <div class="inno-col-pct">2.5%</div>
+      <div class="inno-col-name">科学・編集者・コミュ</div>
+      <div class="inno-bar"></div>
+      <div class="inno-cards">
+        <a class="inno-card target" href="https://www.youtube.com/@DrDray" target="_blank" rel="noopener">
+          <div class="inno-card-name">Dr. Dray</div>
+          <div class="inno-card-role">皮膚科医 / 成分エビデンス解説</div>
+          <span class="inno-plat plat-yt">YouTube</span>
+        </a>
+        <a class="inno-card target" href="https://www.instagram.com/shereeneidriss/" target="_blank" rel="noopener">
+          <div class="inno-card-name">Dr. Shereene Idriss</div>
+          <div class="inno-card-role">皮膚科医 / NYC発トレンド最前線</div>
+          <span class="inno-plat plat-ig">Instagram</span>
+        </a>
+        <a class="inno-card" href="https://www.youtube.com/@Gothamista" target="_blank" rel="noopener">
+          <div class="inno-card-name">Gothamista</div>
+          <div class="inno-card-role">成分オタク系インフルエンサー</div>
+          <span class="inno-plat plat-yt">YouTube</span>
+        </a>
+        <a class="inno-card" href="https://www.reddit.com/r/SkincareAddiction/" target="_blank" rel="noopener">
+          <div class="inno-card-name">r/SkincareAddiction</div>
+          <div class="inno-card-role">成分深掘りコミュニティ</div>
+          <span class="inno-plat plat-rd">Reddit</span>
+        </a>
+        <a class="inno-card" href="https://intothegloss.com" target="_blank" rel="noopener">
+          <div class="inno-card-name">Into The Gloss</div>
+          <div class="inno-card-role">美容メディア（Glossier母体）</div>
+          <span class="inno-plat plat-web">Web</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="z2">
+      <div class="inno-col-label">アーリーアダプター</div>
+      <div class="inno-col-pct">13.5%</div>
+      <div class="inno-col-name">意見リーダー・ゲートキーパー</div>
+      <div class="inno-bar"></div>
+      <div class="inno-cards">
+        <a class="inno-card target" href="https://www.tiktok.com/@skincarebyhyram" target="_blank" rel="noopener">
+          <div class="inno-card-name">Hyram</div>
+          <div class="inno-card-role">K-beautyをTTS主流へ引き上げた人物</div>
+          <span class="inno-plat plat-tt">TikTok</span>
+        </a>
+        <a class="inno-card target" href="https://www.instagram.com/skinwithdrmiya/" target="_blank" rel="noopener">
+          <div class="inno-card-name">Dr. Joyce Park</div>
+          <div class="inno-card-role">皮膚科医 / K-beauty成分科学解説</div>
+          <span class="inno-plat plat-ig">Instagram</span>
+        </a>
+        <a class="inno-card target" href="https://www.instagram.com/dr.samellis/" target="_blank" rel="noopener">
+          <div class="inno-card-name">Dr. Sam Ellis</div>
+          <div class="inno-card-role">TikTok皮膚科医 / 急成長中</div>
+          <span class="inno-plat plat-ig">Instagram</span>
+        </a>
+        <a class="inno-card target" href="https://www.youtube.com/@hubermanlab" target="_blank" rel="noopener">
+          <div class="inno-card-name">Huberman Lab</div>
+          <div class="inno-card-role">Longevity × 科学 / 1,400万登録</div>
+          <span class="inno-plat plat-yt">YouTube</span>
+        </a>
+        <a class="inno-card" href="https://www.allure.com" target="_blank" rel="noopener">
+          <div class="inno-card-name">Allure Magazine</div>
+          <div class="inno-card-role">Best of Beauty 認定媒体</div>
+          <span class="inno-plat plat-web">Web</span>
+        </a>
+        <a class="inno-card" href="https://sokoglam.com" target="_blank" rel="noopener">
+          <div class="inno-card-name">Charlotte Cho</div>
+          <div class="inno-card-role">Soko Glam / K-beauty curator</div>
+          <span class="inno-plat plat-web">Web</span>
+        </a>
+        <a class="inno-card" href="https://www.mindbodygreen.com" target="_blank" rel="noopener">
+          <div class="inno-card-name">mindbodygreen</div>
+          <div class="inno-card-role">Longevity Beauty 文脈形成メディア</div>
+          <span class="inno-plat plat-web">Web</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="z3">
+      <div class="inno-col-label">アーリーマジョリティ</div>
+      <div class="inno-col-pct">34%</div>
+      <div class="inno-col-name">トレンド主流化・棚入りフェーズ</div>
+      <div class="inno-bar"></div>
+      <div class="inno-cards">
+        <a class="inno-card" href="https://rhode.com" target="_blank" rel="noopener">
+          <div class="inno-card-name">Hailey Bieber / Rhode</div>
+          <div class="inno-card-role">Glass skinをTTS主流化した張本人</div>
+          <span class="inno-plat plat-ig">Instagram</span>
+        </a>
+        <a class="inno-card" href="https://www.wellandgood.com" target="_blank" rel="noopener">
+          <div class="inno-card-name">Well+Good</div>
+          <div class="inno-card-role">Wellness × Beauty メディア</div>
+          <span class="inno-plat plat-web">Web</span>
+        </a>
+        <a class="inno-card" href="https://www.byrdie.com" target="_blank" rel="noopener">
+          <div class="inno-card-name">Byrdie</div>
+          <div class="inno-card-role">SEO強・検索流入の起点</div>
+          <span class="inno-plat plat-web">Web</span>
+        </a>
+        <a class="inno-card" href="https://goop.com" target="_blank" rel="noopener">
+          <div class="inno-card-name">Goop</div>
+          <div class="inno-card-role">Gwyneth / Longevity × プレミアム</div>
+          <span class="inno-plat plat-web">Web</span>
+        </a>
+        <a class="inno-card" href="https://www.vogue.com/beauty" target="_blank" rel="noopener">
+          <div class="inno-card-name">Vogue Beauty</div>
+          <div class="inno-card-role">高級メディア認知づくり</div>
+          <span class="inno-plat plat-web">Web</span>
+        </a>
+        <a class="inno-card" href="https://www.refinery29.com/en-us/beauty" target="_blank" rel="noopener">
+          <div class="inno-card-name">Refinery29 Beauty</div>
+          <div class="inno-card-role">ミレニアル女性向け美容メディア</div>
+          <span class="inno-plat plat-web">Web</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="z4">
+      <div class="inno-col-label">レイトマジョリティ</div>
+      <div class="inno-col-pct">34%</div>
+      <div class="inno-col-name">量産・リテール展開フェーズ</div>
+      <div class="inno-bar"></div>
+      <div class="inno-cards">
+        <a class="inno-card" href="https://www.sephora.com" target="_blank" rel="noopener">
+          <div class="inno-card-name">Sephora</div>
+          <div class="inno-card-role">US beauty retail 最重要棚</div>
+          <span class="inno-plat plat-web">Web</span>
+        </a>
+        <a class="inno-card" href="https://www.ulta.com" target="_blank" rel="noopener">
+          <div class="inno-card-name">Ulta Beauty</div>
+          <div class="inno-card-role">マス × プレスティージュ両面</div>
+          <span class="inno-plat plat-web">Web</span>
+        </a>
+        <a class="inno-card" href="https://www.target.com/c/beauty/-/N-5xu1z" target="_blank" rel="noopener">
+          <div class="inno-card-name">Target Beauty</div>
+          <div class="inno-card-role">マス層への普及プラットフォーム</div>
+          <span class="inno-plat plat-web">Web</span>
+        </a>
+        <a class="inno-card" href="https://www.amazon.com/beauty" target="_blank" rel="noopener">
+          <div class="inno-card-name">Amazon Beauty</div>
+          <div class="inno-card-role">D2C → Amazon移行ルート</div>
+          <span class="inno-plat plat-web">Web</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="z5">
+      <div class="inno-col-label">ラガード</div>
+      <div class="inno-col-pct">16%</div>
+      <div class="inno-col-name">保守層・ドラッグストア</div>
+      <div class="inno-bar"></div>
+      <div class="inno-cards">
+        <a class="inno-card" href="https://www.walmart.com/cp/beauty/1085666" target="_blank" rel="noopener">
+          <div class="inno-card-name">Walmart Beauty</div>
+          <div class="inno-card-role">価格重視・保守的消費者</div>
+          <span class="inno-plat plat-web">Web</span>
+        </a>
+        <a class="inno-card" href="https://www.cvs.com" target="_blank" rel="noopener">
+          <div class="inno-card-name">CVS / Walgreens</div>
+          <div class="inno-card-role">ドラッグストア美容棚</div>
+          <span class="inno-plat plat-web">Web</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout info">
+    <strong>IKIGAIの参入経路：</strong> 皮膚科医インフルエンサー（Dr. Dray / Dr. Joyce）にEGCGのエビデンスを語らせる → Allure Best of Beauty取得 → Huberman Lab Longevity文脈で認知拡大 → Sephora棚入り。アーリーアダプター層（Hyram / Charlotte Cho）経由でJ-beautyとして文化定着させてから、アーリーマジョリティへの波及を目指す。セレブ（Miranda Kerr的ポジション）はSephora棚入り後の活用が正解。
+  </div>
+</div>
+
+<!-- ── 10 Ingredient ── -->
 <div id="ingredient" class="page">
   <div class="eyebrow">08 成分戦略</div>
   <h1 class="page-title">抹茶EGCGはLongevity訴求ができる数少ない成分<span class="page-updated">更新 2026-11-19</span></h1>
